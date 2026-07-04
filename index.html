@@ -310,6 +310,36 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
   .nerve::after{animation:none}
   .orb-membrane{animation-duration:12s}
   .holo-idea{animation:none;opacity:.4}
+  /* Productos: layout horizontal en mobile */
+  .prod{display:flex;gap:16px;padding:20px 18px}
+  .prod-organ{width:40px;height:40px;margin-bottom:0;flex:none;margin-top:4px}
+  .prod-organ svg{width:100%;height:100%}
+  .prod-content{flex:1;min-width:0}
+  .prod-tag{margin-bottom:6px}
+  .prod h3{font-size:20px;margin-bottom:2px}
+  .prod-live{margin-bottom:10px}
+  .prod p{font-size:13.5px;line-height:1.5}
+  .prod p+p{margin-top:6px}
+  /* Pilares: layout horizontal en mobile */
+  .pilar-top{padding:18px 18px 0}
+  .pilar-num{font-size:32px}
+  .pilar-organ{width:40px;height:40px}
+  .pilar-body{padding:14px 18px 20px}
+  .pilar h3{font-size:21px;margin-bottom:8px}
+  .pilar-lead{font-size:13.5px;margin-bottom:14px}
+  .pilar-list li{font-size:12.5px;padding:8px 0}
+  /* Founders: 2 columnas incluso en mobile */
+  .founders-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .fcard{padding:18px 14px}
+  .fcard h3{font-size:18px}
+  .fcard p{font-size:13px;line-height:1.5}
+  .fcard .role{font-size:9.5px;margin-bottom:8px}
+  .fcard-link{font-size:11px}
+  /* Secciones menos padding en mobile */
+  section{padding:70px 0}
+  .sec-head{margin-bottom:36px}
+  .pilar-grid{gap:12px}
+  .prod-grid{gap:12px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -488,12 +518,14 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
             <path d="M14 24 L20 24 L23 18 L28 30 L31 24 L40 24" stroke="#EDE6D3" stroke-width="1.2"/>
           </svg>
         </div>
+        <div class="prod-content">
         <span class="prod-tag">Salud · Gestión clínica</span>
         <h3>Aira</h3>
         <span class="prod-live"><i></i> en producción</span>
         <p>Gestión de pacientes para psicólogos y psiquiatras independientes. Nació porque las herramientas del mercado estaban pensadas para clínicas grandes, no para profesionales solos.</p>
         <p>Agenda, historias clínicas, facturación y recordatorios automáticos en una sola herramienta. Funciona en celular y computadora, sin instalar nada. Los profesionales que lo usan dedican menos tiempo a administrar y más a atender.</p>
         <p>Lo mantenemos en producción activa: actualizaciones de seguridad, backups y mejoras continuas. No es un proyecto abandonado — es un sistema vivo que usamos como caso real de IA aplicada a salud.</p>
+        </div>
       </article>
       <article class="prod reveal d2" style="--pc:#E2A33B">
         <div class="prod-organ">
@@ -506,12 +538,14 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
             <circle cx="46" cy="20" r="2.4" fill="#E2A33B" stroke="none"/>
           </svg>
         </div>
+        <div class="prod-content">
         <span class="prod-tag">Comercio exterior · Aduanas</span>
         <h3>CDI</h3>
         <span class="prod-live"><i></i> en producción</span>
         <p>Plataforma para despachantes de aduana. Automatiza trámites que el sector todavía hacía en papel y carpetas compartidas. Sí, en 2026 sigue pasando.</p>
         <p>Digitaliza documentos, controla vencimientos, y centraliza la comunicación con clientes y organismos. Cada despachante que migró a CDI dejó de perder horas buscando papeles o reenviando PDFs por WhatsApp.</p>
         <p>Lo construimos desde cero con los despachantes — no es un software genérico adaptado. Cada funcionalidad responde a un problema real del rubro aduanero argentino.</p>
+        </div>
       </article>
       <article class="prod reveal d3" style="--pc:#FF6A48">
         <div class="prod-organ">
@@ -523,12 +557,14 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
             <circle cx="27" cy="22" r="2.2" fill="#FF6A48" stroke="none"/>
           </svg>
         </div>
+        <div class="prod-content">
         <span class="prod-tag">Hotelería · Gestión</span>
         <h3>ReservaYá</h3>
         <span class="prod-live"><i></i> en producción</span>
         <p>Reservas y gestión para hoteles chicos. Nació de una mala experiencia como huéspedes y se volvió una herramienta para que a otros no les pase lo mismo.</p>
         <p>Gestión de habitaciones, reservas online, check-in digital y reportes de ocupación. Pensado para hoteles de 10 a 40 habitaciones que no necesitan un PMS de cadena pero sí algo que funcione bien.</p>
         <p>Lo usamos para probar integraciones de IA: recomendaciones de servicios según el huésped, predicción de demanda por temporada, y automatización de respuestas a reseñas. Todo probado en producción, no en demo.</p>
+        </div>
       </article>
     </div>
   </div>
