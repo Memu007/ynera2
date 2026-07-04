@@ -21,12 +21,14 @@
 <link rel="canonical" href="https://ynera2-production.up.railway.app/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400;1,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23081826' stroke='%23FF6A48' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23FF6A48'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#081826">
 
 <!-- ═══ JSON-LD para SEO (rich snippets) ═══ -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"Organization","name":"Ynera","description":"Consultoría de IA, datos y seguridad informática para PyMEs.","url":"https://ynera2-production.up.railway.app/","email":"hola@ynera.com","slogan":"Construimos antes de aconsejar.","address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"},"areaServed":{"@type":"Country","name":"Argentina"},"sameAs":["https://www.linkedin.com/","https://github.com/Memu007"],"founder":[{"@type":"Person","name":"Emiliano [Apellido]","jobTitle":"Desarrollo, Ciberseguridad e IA","sameAs":"https://www.linkedin.com/"},{"@type":"Person","name":"Mariano [Apellido]","jobTitle":"Datos y Negocio","sameAs":"https://www.linkedin.com/"}],"knowsAbout":["Inteligencia artificial","Ciencia de datos","Ciberseguridad","Automatización de procesos"]},
+{"@type":"Organization","name":"Ynera","description":"Consultoría de IA, datos y seguridad informática para PyMEs.","url":"https://ynera2-production.up.railway.app/","email":"hola@ynera.com","slogan":"Construimos antes de aconsejar.","address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"},"areaServed":{"@type":"Country","name":"Argentina"},"sameAs":["https://www.linkedin.com/","https://github.com/Memu007"],"founder":[{"@type":"Person","name":"Emiliano","jobTitle":"Desarrollo, Ciberseguridad e IA","sameAs":"https://www.linkedin.com/"},{"@type":"Person","name":"Mariano","jobTitle":"Datos y Negocio","sameAs":"https://www.linkedin.com/"}],"knowsAbout":["Inteligencia artificial","Ciencia de datos","Ciberseguridad","Automatización de procesos"]},
 {"@type":"ProfessionalService","name":"Ynera","description":"Consultoría de IA, datos y seguridad informática para PyMEs. Construimos antes de aconsejar.","url":"https://ynera2-production.up.railway.app/","email":"hola@ynera.com","priceRange":"$$","areaServed":{"@type":"Country","name":"Argentina"},"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"},"geo":{"@type":"GeoCoordinates","latitude":-34.6037,"longitude":-58.3816},"slogan":"Construimos antes de aconsejar."},
 {"@type":"SoftwareApplication","name":"Aira","applicationCategory":"HealthApplication","operatingSystem":"Web","description":"Gestión de pacientes para psicólogos y psiquiatras independientes."},
 {"@type":"SoftwareApplication","name":"CDI","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Plataforma para despachantes de aduana. Automatiza trámites que el sector todavía hacía en papel."},
@@ -109,7 +111,19 @@ nav#nav.scrolled{background:rgba(8,24,38,.94);border-color:var(--ink-12)}
 .btn-ghost:hover{border-color:var(--aqua);color:var(--aqua)}
 .nav-wa{font-family:var(--mono)!important;font-size:12.5px!important;color:var(--aqua)!important}
 .nav-wa:hover{color:var(--coral)!important}
-@media(max-width:840px){.nav-links a:not(.btn):not(.nav-wa){display:none}}
+@media(max-width:840px){.nav-links a:not(.btn):not(.nav-wa):not(.menu-toggle){display:none}.menu-toggle{display:flex}}
+
+/* ── Menú mobile ── */
+.menu-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:none;border:none;cursor:pointer;padding:6px}
+.menu-toggle span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .2s}
+.menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle.open span:nth-child(2){opacity:0}
+.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:99;background:rgba(8,24,38,.98);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{font-family:var(--serif);font-size:28px;color:var(--ink);transition:color .2s}
+.mobile-menu a:hover{color:var(--coral)}
+.mobile-menu .nav-wa{font-family:var(--mono);font-size:14px;color:var(--aqua)}
 
 /* ── HERO ── */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:130px 0 80px;overflow:hidden}
@@ -187,7 +201,6 @@ section{padding:110px 0;position:relative}
 
 /* ── pilares ── */
 .pilar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-@media(max-width:900px){.pilar-grid{grid-template-columns:1fr}}
 .pilar{position:relative;border:1px solid var(--ink-12);background:linear-gradient(170deg,var(--panel),var(--deep-2));padding:0;border-radius:6px;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .4s;display:flex;flex-direction:column}
 .pilar::before{content:"";position:absolute;top:-30%;right:-20%;width:70%;height:60%;background:radial-gradient(circle,var(--pc,var(--coral)) 0%,transparent 65%);opacity:.08;pointer-events:none;z-index:0;transition:opacity .4s}
 .pilar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pc,var(--coral));transform:scaleY(.3);transform-origin:top;transition:transform .45s cubic-bezier(.2,.7,.2,1);z-index:2}
@@ -214,7 +227,6 @@ section{padding:110px 0;position:relative}
 
 /* ── productos ── */
 .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:900px){.prod-grid{grid-template-columns:1fr}}
 .prod{position:relative;border:1px solid var(--ink-12);background:linear-gradient(170deg,var(--panel),var(--deep-2));padding:32px 28px;transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden;border-radius:4px}
 .prod::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pc,var(--coral));transform:scaleY(0);transform-origin:top;transition:transform .35s ease}
 .prod:hover{transform:translateY(-5px);border-color:var(--ink-25);box-shadow:0 26px 50px -20px rgba(0,0,0,.55)}
@@ -377,6 +389,7 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
 <body>
 
 <a class="skip-link" href="#main">Saltar al contenido</a>
+<noscript><p style="position:fixed;top:0;left:0;right:0;background:#FF6A48;color:#12100D;padding:12px;text-align:center;font-family:sans-serif;font-size:14px;z-index:999">Ynera — Consultoría de IA, datos y seguridad para PyMEs. Hablá con un founder: hola@ynera.com</p></noscript>
 
 <nav id="nav">
   <div class="nav-inner">
@@ -387,9 +400,18 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
       <a href="#nosotros">Nosotros</a>
       <!-- EDITÁ: tu WhatsApp real -->
       <a class="nav-wa" href="https://wa.me/5491100000000" target="_blank" rel="noopener">WhatsApp</a>
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#pilares">Pilares</a>
+  <a href="#productos">Productos</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#preguntas">Preguntas</a>
+  <a class="nav-wa" href="https://wa.me/5491100000000" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn btn-primary" href="https://cal.com/ynera/30min" target="_blank" rel="noopener" style="font-size:15px">Agendá una llamada ↗</a>
+</div>
 
 <main id="main">
 
@@ -402,7 +424,7 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
       <p class="hero-sub">Dos builders. Tres SaaS vivos en producción. <strong>Construimos antes de aconsejar</strong> — ayudamos a PyMEs a usar inteligencia artificial con experiencia real, no con slides.</p>
       <p style="font-family:var(--sans);font-size:14px;color:var(--ink-45);margin-top:16px">3 SaaS en producción · 2 founders · 3 industrias con criterio real</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="https://cal.com/ynera/30min">Agendá una llamada ↗</a>
+        <a class="btn btn-primary" href="https://cal.com/ynera/30min" target="_blank" rel="noopener">Agendá una llamada ↗</a>
         <a class="btn btn-ghost" href="#pilares">Qué hacemos ↓</a>
       </div>
       <p class="hero-note">respuesta en <b>&lt; 24 hs hábiles</b> · hablás con un founder, no con un bot</p>
@@ -754,13 +776,13 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
       <!-- EDITÁ: apellido y link de LinkedIn de cada founder -->
       <article class="fcard reveal d1">
         <span class="role">Desarrollo · Ciberseguridad · IA</span>
-        <h3>Emiliano <em>[Apellido]</em></h3>
+        <h3>Emiliano</h3>
         <p style="margin-top:12px">Toma las ideas y las lleva a producción. Seguridad por diseño, obsesionado con que las soluciones se usen realmente. Puso las manos en la arquitectura de las tres SaaS.</p>
         <a class="fcard-link" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </article>
       <article class="fcard reveal d2">
         <span class="role">Datos · Negocio</span>
-        <h3>Mariano <em>[Apellido]</em></h3>
+        <h3>Mariano</h3>
         <p style="margin-top:12px">Escucha el negocio y encuentra el problema real debajo del síntoma aparente. De ahí salieron los tres productos.</p>
         <a class="fcard-link" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
       </article>
@@ -795,7 +817,7 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
     <h2 class="reveal">Si tenés una PyME y estás pensando <em>en IA</em>, empecemos por una charla.</h2>
     <p class="reveal d1">Sin compromiso. 30 minutos. Te decimos honestamente si podemos ayudarte — y si no, te decimos por qué.</p>
     <div class="reveal d2 final-ctas">
-      <a class="btn btn-primary" style="font-size:17px;padding:16px 34px" href="https://cal.com/ynera/30min">Agendá una llamada ↗</a>
+      <a class="btn btn-primary" style="font-size:17px;padding:16px 34px" href="https://cal.com/ynera/30min" target="_blank" rel="noopener">Agendá una llamada ↗</a>
       <!-- EDITÁ: tu WhatsApp real -->
       <a class="btn btn-ghost" href="https://wa.me/5491100000000" target="_blank" rel="noopener">Escribínos por WhatsApp</a>
     </div>
@@ -924,6 +946,60 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
     }, {rootMargin:'120px 0px'});
     pausables.forEach(function(el){ el.classList.add('anim-paused'); pio.observe(el); });
   }
+
+  /* menú mobile */
+  var menuToggle = document.querySelector('.menu-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(menuToggle && mobileMenu){
+    function toggleMenu(open){
+      menuToggle.classList.toggle('open', open);
+      mobileMenu.classList.toggle('open', open);
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    menuToggle.addEventListener('click', function(){
+      toggleMenu(!menuToggle.classList.contains('open'));
+    });
+    mobileMenu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ toggleMenu(false); });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && menuToggle.classList.contains('open')) toggleMenu(false);
+    });
+  }
+
+  /* scrollspy: highlight nav link según sección visible */
+  var sections = ['pilares','productos','nosotros','preguntas'].map(function(id){
+    return document.getElementById(id);
+  }).filter(Boolean);
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  if(sections.length && navLinks.length){
+    var spy = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          var id = e.target.id;
+          navLinks.forEach(function(l){
+            l.style.color = l.getAttribute('href') === '#' + id ? 'var(--coral)' : '';
+          });
+        }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    sections.forEach(function(s){ spy.observe(s); });
+  }
+
+  /* scroll-to-top */
+  var stt = document.createElement('button');
+  stt.className = 'scroll-top';
+  stt.setAttribute('aria-label', 'Volver arriba');
+  stt.innerHTML = '↑';
+  stt.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:50;width:44px;height:44px;border-radius:50%;border:1px solid var(--ink-25);background:rgba(8,24,38,.9);color:var(--ink);font-size:20px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .2s;backdrop-filter:blur(8px)';
+  document.body.appendChild(stt);
+  stt.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  window.addEventListener('scroll', function(){
+    var show = window.scrollY > 600;
+    stt.style.opacity = show ? '1' : '0';
+    stt.style.pointerEvents = show ? 'auto' : 'none';
+  }, {passive:true});
 })();
 </script>
 </body>
