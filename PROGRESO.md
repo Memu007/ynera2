@@ -195,6 +195,31 @@
 
 **Estado**: ✅ implementado · 🔍 pendiente de aprobación del usuario
 
+### 2026-07-04 — Reestructuración: 10 → 6 secciones
+**Qué**: Recorte y reorden de la página según análisis de PM.
+**Por qué**: El usuario sentía la página muy larga.
+
+**Secciones eliminadas**:
+- Trust band → absorbida como línea mono en Hero
+- Origen → fusionada en Nosotros como intro
+- Método → eliminada sin reemplazo
+- Servicios → eliminada sin reemplazo
+- Valores → "Apuestas online, no" movida como nota coral al final de Nosotros
+
+**Estructura final (6 secciones)**:
+1. Hero (con línea de trust)
+2. Pilares (3 bullets c/u, antes 5-6)
+3. Productos
+4. Nosotros (con origen + valores fusionados)
+5. FAQ
+6. CTA Final
+
+**Nervios**: 4 (Hero→Pilares, Pilares→Productos, Productos→Nosotros, Nosotros→FAQ)
+**Nav**: Pilares, Productos, Nosotros (sin Método)
+**JSON-LD**: sin cambios (no referenciaba secciones eliminadas)
+
+**Estado**: ✅ implementado
+
 ---
 
 ## Tareas pendientes
