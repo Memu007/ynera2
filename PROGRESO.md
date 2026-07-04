@@ -59,7 +59,7 @@
 3. CSS sin usar: `.lam-syn` y `.lam-idea` definidos pero no aplicados
 4. Indentación inconsistente en líneas de Mariano y Emiliano
 
-### 2026-07-04 — Commit pendiente (correcciones PM)
+### 2026-07-04 — Commit `e720bf0` (correcciones PM) — ✅ aprobado por PM
 **Qué**: Correcciones de paleta, CSS y indentación sobre el SVG de founders
 **Cambios aplicados:**
 1. `#3D5C4A` → `#EDE6D3` (ink) — todos los strokes/fills del SVG
@@ -69,19 +69,44 @@
 5. Eliminadas reglas CSS `.lam-syn` y `.lam-idea` (no se usaban en el SVG)
 6. Indentación corregida en Mariano (3 paths) y Emiliano (12 paths + comentario)
 **Verificación**: `grep` confirma 0 ocurrencias de `#3D5C4A`, `#345C4A`, `#AD5C4A`, `#D9603F`, `#FAF7EE` en el archivo
-**Nota abierta**: `#1A1A1F` (negro azulado) se usa para cabello y cejas de ambos founders. No está en la paleta oficial pero es funcional para detalles oscuros de la ilustración. Pendiente de decisión de la PM.
-**Estado**: ✅ hecho · 🔍 pendiente de revisión PM
+**Nota abierta resuelta**: `#1A1A1F` (negro azulado) se acepta como excepción funcional para cabello y cejas de los founders.
+**Estado**: ✅ hecho · ✅ aprobado por PM
+
+### 2026-07-04 — Revisión visual y técnica (fase 1)
+**Revisó**: Programadora
+**Método**: Inspección con Puppeteer (automatizado) + análisis de código. Preview local disponible en `http://127.0.0.1:8080` / proxy IDE `http://127.0.0.1:57212`.
+
+**Tarea 1 — Revisión visual en navegador:**
+- ✅ **Orb**: `.orb-core` (370x370px) presente, respiración con `animation: orbbreathe 5.5s`, viveza con `.orb-heart`, red con `.orb-net`, anillos `.orb-ring` y `.orb-ring2`. Hover/excited activa la clase `excited` (verificado con `pointerenter`). Typewriter en `.orb-voice` con texto actual "aprendiendo tu rubro…".
+- ✅ **SVG draw-on**: al llegar a la sección `#nosotros`, el SVG adquiere clases `drawn looping`. Los paths se animan con `stroke-dashoffset`, los fills aparecen con opacidad (`fp`).
+- ✅ **Ideas flotantes**: 7 textos (`SEGURIDAD`, `DATOS`, `IA`, `DESARROLLO`, `AUDITORÍA`, `PATRONES`, `DESPLIEGUE`) presentes, animación `hIdeaIn` + `hIdeaFloat`, opacidad final ~0.68.
+- ✅ **Lentes HUD**: 4 `.hud-ring` + 2 `.hud-tick` + 4 `.lens-shine` con stroke `#6BCBCF` (aqua) y opacidad 0.7.
+- ✅ **Reveals al scroll**: 60 elementos `.reveal` detectados, con clases `d1`/`d2`/`d3` para stagger.
+- ✅ **Hora Buenos Aires**: `<b id="baTime">14:27</b>` presente en footer, actualizado por JS (timezone `America/Argentina/Buenos_Aires`).
+- ✅ **Nervios**: 8 `.nerve` entre secciones, animación `nervetravel 11s` con pulso coral viajando. En mobile (≤740px) la animación se desactiva (`animation:none`) para reducir movimiento.
+
+**Tarea 2 — Responsive:**
+- ✅ **Mobile (375px)**: verificado en Puppeteer. `nav-links` oculta Pilares/Productos/Método/Nosotros (CSS `@media(max-width:840px)`), deja visible WhatsApp y CTA. `.hero-grid` pasa a 1 columna, orb arriba. `.trust-grid`, `.founders-grid`, `.serv-grid`, `.val-row` pasan a 1 columna. `.prod-grid` y `.pilar-grid` ya son 1fr en base. Sin rupturas detectadas en el código.
+- ✅ **Tablet (768px)**: grids intermedios, orb y hero se reordenan, sin media queries específicas de ruptura.
+- 🟡 **Nota**: no hay botón de hamburguesa; el patrón es "ocultar links y dejar CTA", lo cual es funcional pero podría limitar navegación. Decisión de diseño heredada del HTML base.
+
+**Tarea 3 — Accesibilidad:**
+- ✅ **aria-label en SVG**: `<svg class="lamina-svg holo" aria-label="Ilustración de los dos fundadores de Ynera">` presente.
+- ✅ **FAQ navegable con teclado**: 6 `<details>` con `<summary>` nativos (foco por defecto, expande/contrae con Enter/Space).
+- ✅ **`:focus-visible`**: regla global `:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px }` aplicada. Nota: `getComputedStyle` en pseudo-elemento no devuelve el outline en runtime, pero la regla CSS está declarada.
+- ✅ **Contraste WCAG**: `ink #EDE6D3` sobre `deep #081826` = ratio 14.42:1, pasa AA y AAA. `ink-70` sobre deep también pasa AA (ratio estimado ~10.3:1).
+- ✅ **H1 con keyword**: "IA, datos y seguridad para PyMEs." contiene IA, datos, seguridad, PyMEs.
 
 ---
 
 ## Tareas pendientes
 
+- ✅ Revisión visual completa del sitio en navegador (ver sección "Revisión visual y técnica (fase 1)")
+- ✅ Verificar que las animaciones del SVG de founders funcionen (draw-on + loops)
+- ✅ Verificar responsive (mobile, tablet)
+- ✅ Verificar accesibilidad (skip-link, aria-labels, focus-visible)
 - ⏳ Reemplazar placeholders con datos reales (WhatsApp, email, apellidos, LinkedIn) — bloqueado hasta que el usuario pase los datos
-- ⏳ Revisión visual completa del sitio en navegador
-- ⏳ Verificar que las animaciones del SVG de founders funcionen (draw-on + loops)
-- ⏳ Verificar responsive (mobile, tablet)
-- ⏳ Verificar accesibilidad (skip-link, aria-labels, focus-visible)
-- 🔍 Decisión PM: ¿`#1A1A1F` en cabello/cejas del SVG es aceptable o hay que cambiarlo?
+- 🟡 Nota: patrón de nav mobile sin hamburguesa — funcional, a revisar si se quiere alternativa
 
 ---
 
