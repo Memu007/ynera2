@@ -89,7 +89,7 @@ h2 em,h1 em{font-weight:600}
 .cell{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px rgba(255,106,72,.15);flex:none}
 .tag{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-45);display:inline-flex;align-items:center;gap:12px}
 
-body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px;will-change:opacity}
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;background-image:url(noise.png);background-size:128px 128px}
 
 .nerve{max-width:1140px;margin:0 auto;height:1px;position:relative;overflow:hidden;background:linear-gradient(90deg,transparent,var(--ink-12) 15%,var(--ink-12) 85%,transparent)}
 .nerve::after{content:"";position:absolute;top:0;bottom:0;left:0;width:12%;background:linear-gradient(90deg,transparent,var(--coral),transparent);will-change:transform;animation:nervetravel 11s cubic-bezier(.4,.1,.5,.9) infinite;animation-delay:var(--nd,0s)}
@@ -186,9 +186,9 @@ nav#nav.scrolled{background:rgba(8,24,38,.94);border-color:var(--ink-12)}
 
 /* ── secciones ── */
 section{padding:110px 0;position:relative}
-#pilares{background:rgba(14,46,68,.2)}
-#productos{background:rgba(107,203,207,.06)}
-#nosotros{background:rgba(255,106,72,.05)}
+#pilares{background:linear-gradient(180deg,rgba(14,46,68,.18),transparent)}
+#productos{background:linear-gradient(180deg,rgba(107,203,207,.05),transparent)}
+#nosotros{background:linear-gradient(180deg,rgba(255,106,72,.04),transparent)}
 .sec-head{margin-bottom:52px}
 .sec-head .tag{margin-bottom:20px}
 .sec-head p.lead{margin-top:16px}
@@ -207,7 +207,8 @@ section{padding:110px 0;position:relative}
 .pilar:hover{transform:translateY(-6px);border-color:var(--ink-25);box-shadow:0 20px 40px -20px rgba(0,0,0,.5);animation-play-state:paused}
 .pilar:hover::before{opacity:.18}
 .pilar:hover::after{transform:scaleY(1)}
-.pilar:hover .organ-beat{animation-duration:1.1s}
+.pilar .organ-beat{animation:none}
+.pilar:hover .organ-beat{animation:organbeat 1.1s ease-in-out infinite}
 .pilar-top{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:26px 24px 0}
 .pilar-num{font-family:var(--serif);font-style:italic;font-weight:600;font-size:44px;line-height:1;color:var(--pc,var(--coral));opacity:.85;letter-spacing:-.02em}
 .pilar-organ{width:56px;height:56px;position:relative;flex:none}
@@ -238,7 +239,8 @@ section{padding:110px 0;position:relative}
 .prod-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-45);margin-bottom:16px}
 .prod-live i{width:6px;height:6px;border-radius:50%;background:var(--aqua);box-shadow:0 0 8px var(--aqua);font-style:normal}
 .prod p{color:var(--ink-70);font-size:15px}
-.prod:hover .organ-beat{animation-duration:1.1s}
+.prod .organ-beat{animation:none}
+.prod:hover .organ-beat{animation:organbeat 1.1s ease-in-out infinite}
 .prod-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:13px;color:var(--coral);text-decoration:none;margin-top:12px;padding:8px 16px;border:1px solid rgba(255,106,72,.3);border-radius:8px;transition:background .2s,border-color .2s}
 .prod-link:hover{background:rgba(255,106,72,.08);border-color:var(--coral)}
 .prod-shot{width:100%;max-width:280px;height:auto;border-radius:6px;margin-top:12px;border:1px solid var(--ink-15);display:block}
