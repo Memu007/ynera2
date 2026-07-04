@@ -118,6 +118,41 @@
 **Preview**: `http://127.0.0.1:57212` (proxy IDE) y `http://127.0.0.1:8080` (servidor local).
 **Estado**: ✅ implementado · 🔍 pendiente de aprobación del usuario
 
+### 2026-07-04 — Orb v2 (célula orgánica liviana) — commit `bdf5914`
+**Qué**: Reemplazo del orb v1 (red neuronal SVG con filters) por orb v2 (célula orgánica CSS puro)
+**Por qué**: El usuario rechazó v1 por dos motivos: "no dice nada, los colores no dicen nada" (se veía como diagrama de red) y "es pesado, me cuelga la compu" (feGaussianBlur + mix-blend-mode + 35 elementos animados).
+**Enfoque**: Opción A revisada — CSS puro, metáfora biológica en vez de tech.
+**Elementos animados (5 máximo)**:
+1. Membrana — `border-radius` morph 8s (blob orgánico)
+2. Citoplasma — `opacity + scale` breathe 6s
+3. Núcleo — `scale + opacity` beat 3.5s (coral)
+4. Organela aqua — `translate` drift 10s
+5. Organela amber — `translate` drift 12s
+**Eliminado**: feGaussianBlur, feMerge, mix-blend-mode, SVG con 35 elementos. Cero filters pesados.
+**Performance**: same pausas que v1 (IntersectionObserver, scroll-freeze, reduced-motion, mobile lento).
+**Estado**: ✅ implementado · 🔍 pendiente de aprobación del usuario
+
+### 2026-07-04 — SVG de founders reemplazado — commit `26a59f6`
+**Qué**: Reemplazo del SVG de founders por versión mejorada de `/Users/Emi/Desktop/muñes/founders-svg.html`
+**Por qué**: El usuario consiguió una versión mejorada del SVG con colores aqua, sinapsis entre founders, idea central y células bioluminiscentes.
+**Cambios visuales**:
+- Trazos de founders: ink → aqua (`#6BCBCF`)
+- Pelo: `#1A1A1F` → ink (`#EDE6D3`)
+- Máscara de Emiliano: ink → deep (`#081826`)
+- Sinapsis: línea aqua conectando a los dos founders (animación `lamsynflow`)
+- Idea central: círculo amber pulsante (animación `lamClayPulse`)
+- 5 células bioluminiscentes orbitando (coral, aqua, amber)
+**CSS re-agregado**: `.lam-syn` y `.lam-idea` (se habían borrado en commit `e720bf0` por "no usados" — ahora se usan)
+**Estado**: ✅ implementado
+
+### 2026-07-04 — Inversión de roles de founders — commit pendiente
+**Qué**: Inversión de roles en las cards de founders
+**Por qué**: Los roles estaban invertidos — Emiliano es Desarrollo/Ciberseguridad/IA, Mariano es Datos/Negocio.
+**Cambios**:
+- Card 1: Mariano → Emiliano (Desarrollo · Ciberseguridad · IA)
+- Card 2: Emiliano → Mariano (Datos · Negocio)
+**Estado**: ✅ corregido
+
 ---
 
 ## Tareas pendientes
