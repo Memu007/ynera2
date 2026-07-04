@@ -287,6 +287,11 @@ section{padding:110px 0;position:relative}
 .holo-idea:nth-child(even){fill:#6BCBCF}
 .fcell{transform-box:fill-box;transform-origin:center;animation:fcellfloat var(--t,6s) ease-in-out var(--fd2,0s) infinite}
 @keyframes fcellfloat{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-7px);opacity:1}}
+.lam-syn{opacity:0;transition:opacity .8s ease}
+.lamina-svg.looping .lam-syn{opacity:.9;stroke-dasharray:3 9;animation:lamsynflow 2.4s linear infinite}
+@keyframes lamsynflow{to{stroke-dashoffset:-48}}
+.lam-idea{transform-box:fill-box;transform-origin:center;opacity:0;transition:opacity .6s ease .4s}
+.lamina-svg.looping .lam-idea{opacity:1;animation:lamClayPulse 3.2s ease-in-out infinite}
 .founders-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:740px){.founders-grid{grid-template-columns:1fr}}
 .fcard{border:1px solid var(--ink-12);border-radius:4px;padding:30px;background:rgba(14,42,63,.4)}
@@ -692,45 +697,45 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
 
         <!-- MARIANO atrás -->
         <g transform="translate(152,28) scale(0.82)">
-          <path class="dp" style="--d:.15s;--dur:.25s" stroke="#EDE6D3" stroke-width="1.6" d="M 86 136 L 86 156"/>
-          <path class="dp" style="--d:.15s;--dur:.25s" stroke="#EDE6D3" stroke-width="1.6" d="M 114 136 L 114 156"/>
-          <path class="dp" style="--d:.3s;--dur:.65s" stroke="#EDE6D3" stroke-width="1.7" d="M 86 156 Q 70 162 56 172 Q 36 186 30 214 Q 26 234 26 256"/>
-          <path class="dp" style="--d:.3s;--dur:.75s" stroke="#EDE6D3" stroke-width="1.7" d="M 114 156 Q 132 162 146 174 Q 162 188 166 210 Q 169 230 168 252 Q 167 268 164 282"/>
-          <path class="dp" style="--d:.55s;--dur:.3s" stroke="#EDE6D3" stroke-width="1.45" d="M 86 158 Q 100 170 114 158"/>
-          <path class="dp" style="--d:.62s;--dur:.25s" stroke="#EDE6D3" stroke-width="1.0" opacity=".5" d="M 88 163 Q 100 173 112 163"/>
-          <path class="dp" style="--d:.75s;--dur:.3s" stroke="#EDE6D3" stroke-width="1.0" opacity=".45" d="M 70 200 Q 72 220 70 240"/>
-          <path class="dp" style="--d:.6s;--dur:.55s" stroke="#EDE6D3" stroke-width="1.5" d="M 138 188 Q 145 210 146 232 Q 147 256 145 276 Q 144 282 142 288"/>
-          <path class="dp" style="--d:.85s;--dur:.25s" stroke="#EDE6D3" stroke-width="1.35" d="M 146 222 Q 156 219 166 223"/>
-          <path class="dp" style="--d:.88s;--dur:.2s" stroke="#EDE6D3" stroke-width="0.8" opacity=".5" d="M 146 226 Q 156 223 166 227"/>
-          <path class="dp" style="--d:1.35s;--dur:.5s" stroke="#EDE6D3" stroke-width="1.15" d="M 156 272 Q 157 258 156 244"/>
-          <path class="dp" style="--d:1.55s;--dur:.3s" stroke="#EDE6D3" stroke-width="1.05" d="M 156 256 Q 151 253 148 248"/>
-          <path class="dp" style="--d:1.57s;--dur:.3s" stroke="#EDE6D3" stroke-width="1.05" d="M 156 254 Q 161 251 164 246"/>
+          <path class="dp" style="--d:.15s;--dur:.25s" stroke="#6BCBCF" stroke-width="1.6" d="M 86 136 L 86 156"/>
+          <path class="dp" style="--d:.15s;--dur:.25s" stroke="#6BCBCF" stroke-width="1.6" d="M 114 136 L 114 156"/>
+          <path class="dp" style="--d:.3s;--dur:.65s" stroke="#6BCBCF" stroke-width="1.7" d="M 86 156 Q 70 162 56 172 Q 36 186 30 214 Q 26 234 26 256"/>
+          <path class="dp" style="--d:.3s;--dur:.75s" stroke="#6BCBCF" stroke-width="1.7" d="M 114 156 Q 132 162 146 174 Q 162 188 166 210 Q 169 230 168 252 Q 167 268 164 282"/>
+          <path class="dp" style="--d:.55s;--dur:.3s" stroke="#6BCBCF" stroke-width="1.45" d="M 86 158 Q 100 170 114 158"/>
+          <path class="dp" style="--d:.62s;--dur:.25s" stroke="#6BCBCF" stroke-width="1.0" opacity=".5" d="M 88 163 Q 100 173 112 163"/>
+          <path class="dp" style="--d:.75s;--dur:.3s" stroke="#6BCBCF" stroke-width="1.0" opacity=".45" d="M 70 200 Q 72 220 70 240"/>
+          <path class="dp" style="--d:.6s;--dur:.55s" stroke="#6BCBCF" stroke-width="1.5" d="M 138 188 Q 145 210 146 232 Q 147 256 145 276 Q 144 282 142 288"/>
+          <path class="dp" style="--d:.85s;--dur:.25s" stroke="#6BCBCF" stroke-width="1.35" d="M 146 222 Q 156 219 166 223"/>
+          <path class="dp" style="--d:.88s;--dur:.2s" stroke="#6BCBCF" stroke-width="0.8" opacity=".5" d="M 146 226 Q 156 223 166 227"/>
+          <path class="dp" style="--d:1.35s;--dur:.5s" stroke="#6BCBCF" stroke-width="1.15" d="M 156 272 Q 157 258 156 244"/>
+          <path class="dp" style="--d:1.55s;--dur:.3s" stroke="#6BCBCF" stroke-width="1.05" d="M 156 256 Q 151 253 148 248"/>
+          <path class="dp" style="--d:1.57s;--dur:.3s" stroke="#6BCBCF" stroke-width="1.05" d="M 156 254 Q 161 251 164 246"/>
           <g class="tat-leaf fp" style="--fdd:1.75s;--fd:.2s;--op:.55;transform-origin:148px 243px">
-            <path fill="#EDE6D3" d="M 148 248 Q 144 245 145 240 Q 149 242 148 248 Z"/>
+            <path fill="#6BCBCF" d="M 148 248 Q 144 245 145 240 Q 149 242 148 248 Z"/>
             <line class="capacitor-plate" x1="145" y1="243" x2="148" y2="243"/>
             <line class="capacitor-plate" x1="145" y1="245.5" x2="148" y2="245.5"/>
           </g>
           <g class="tat-leaf fp" style="--fdd:1.77s;--fd:.2s;--op:.55;transform-origin:164px 241px">
-            <path fill="#EDE6D3" d="M 164 246 Q 168 243 167 238 Q 163 240 164 246 Z"/>
+            <path fill="#6BCBCF" d="M 164 246 Q 168 243 167 238 Q 163 240 164 246 Z"/>
             <line class="capacitor-plate" x1="164" y1="241" x2="167" y2="241"/>
             <line class="capacitor-plate" x1="164" y1="243.5" x2="167" y2="243.5"/>
           </g>
-          <path class="fp" style="--fdd:1.8s;--fd:.18s;--op:.45" fill="#EDE6D3" d="M 151 264 Q 147 262 148 257 Q 152 259 151 264 Z"/>
-          <path class="fp" style="--fdd:1.82s;--fd:.18s;--op:.45" fill="#EDE6D3" d="M 161 262 Q 165 260 164 255 Q 160 257 161 262 Z"/>
-          <ellipse class="dp" style="--d:0s;--dur:.95s" stroke="#EDE6D3" stroke-width="1.7" cx="100" cy="88" rx="42" ry="50"/>
-          <path class="fp" style="--fdd:.3s;--fd:.3s;--op:1" fill="#1A1A1F" fill-opacity=".88" d="M 58 78 Q 56 44 78 35 Q 100 28 122 35 Q 144 44 142 78 Q 136 52 100 50 Q 64 52 58 78 Z"/>
-          <path class="dp" style="--d:.12s;--dur:.22s" stroke="#EDE6D3" stroke-width="1.25" d="M 57 88 Q 49 92 49 102 Q 49 112 57 115"/>
-          <path class="dp" style="--d:.12s;--dur:.22s" stroke="#EDE6D3" stroke-width="1.25" d="M 143 88 Q 151 92 151 102 Q 151 112 143 115"/>
-          <path class="dp" style="--d:.55s;--dur:.2s" stroke="#1A1A1F" stroke-width="1.7" d="M 64 74 Q 74 69 84 72"/>
-          <path class="dp" style="--d:.55s;--dur:.2s" stroke="#1A1A1F" stroke-width="1.7" d="M 116 72 Q 126 69 136 74"/>
-          <path class="dp" style="--d:.6s;--dur:.18s" stroke="#1A1A1F" stroke-width="1.1" d="M 70 85 Q 78 82 86 85"/>
-          <path class="dp" style="--d:.6s;--dur:.18s" stroke="#1A1A1F" stroke-width="1.1" d="M 114 85 Q 122 82 130 85"/>
-          <circle class="fp" style="--fdd:.72s;--fd:.16s;--op:1" cx="78" cy="88" r="2.8" fill="#1A1A1F"/>
-          <circle class="fp" style="--fdd:.72s;--fd:.16s;--op:1" cx="122" cy="88" r="2.8" fill="#1A1A1F"/>
-          <path class="dp" style="--d:.65s;--dur:.22s" stroke="#EDE6D3" stroke-width="1.2" d="M 100 94 Q 97 106 99 111 Q 100 113 101 111 Q 103 106 100 94"/>
-          <path class="dp" style="--d:.68s;--dur:.15s" stroke="#EDE6D3" stroke-width="1.2" d="M 92 112 Q 96 116 100 112"/>
-          <path class="dp" style="--d:.68s;--dur:.15s" stroke="#EDE6D3" stroke-width="1.2" d="M 108 112 Q 104 116 100 112"/>
-          <path class="dp" style="--d:.74s;--dur:.2s" stroke="#EDE6D3" stroke-width="1.3" d="M 88 125 Q 100 132 112 125"/>
+          <path class="fp" style="--fdd:1.8s;--fd:.18s;--op:.45" fill="#6BCBCF" d="M 151 264 Q 147 262 148 257 Q 152 259 151 264 Z"/>
+          <path class="fp" style="--fdd:1.82s;--fd:.18s;--op:.45" fill="#6BCBCF" d="M 161 262 Q 165 260 164 255 Q 160 257 161 262 Z"/>
+          <ellipse class="dp" style="--d:0s;--dur:.95s" stroke="#6BCBCF" stroke-width="1.7" cx="100" cy="88" rx="42" ry="50"/>
+          <path class="fp" style="--fdd:.3s;--fd:.3s;--op:1" fill="#EDE6D3" fill-opacity=".88" d="M 58 78 Q 56 44 78 35 Q 100 28 122 35 Q 144 44 142 78 Q 136 52 100 50 Q 64 52 58 78 Z"/>
+          <path class="dp" style="--d:.12s;--dur:.22s" stroke="#6BCBCF" stroke-width="1.25" d="M 57 88 Q 49 92 49 102 Q 49 112 57 115"/>
+          <path class="dp" style="--d:.12s;--dur:.22s" stroke="#6BCBCF" stroke-width="1.25" d="M 143 88 Q 151 92 151 102 Q 151 112 143 115"/>
+          <path class="dp" style="--d:.55s;--dur:.2s" stroke="#EDE6D3" stroke-width="1.7" d="M 64 74 Q 74 69 84 72"/>
+          <path class="dp" style="--d:.55s;--dur:.2s" stroke="#EDE6D3" stroke-width="1.7" d="M 116 72 Q 126 69 136 74"/>
+          <path class="dp" style="--d:.6s;--dur:.18s" stroke="#EDE6D3" stroke-width="1.1" d="M 70 85 Q 78 82 86 85"/>
+          <path class="dp" style="--d:.6s;--dur:.18s" stroke="#EDE6D3" stroke-width="1.1" d="M 114 85 Q 122 82 130 85"/>
+          <circle class="fp" style="--fdd:.72s;--fd:.16s;--op:1" cx="78" cy="88" r="2.8" fill="#EDE6D3"/>
+          <circle class="fp" style="--fdd:.72s;--fd:.16s;--op:1" cx="122" cy="88" r="2.8" fill="#EDE6D3"/>
+          <path class="dp" style="--d:.65s;--dur:.22s" stroke="#6BCBCF" stroke-width="1.2" d="M 100 94 Q 97 106 99 111 Q 100 113 101 111 Q 103 106 100 94"/>
+          <path class="dp" style="--d:.68s;--dur:.15s" stroke="#6BCBCF" stroke-width="1.2" d="M 92 112 Q 96 116 100 112"/>
+          <path class="dp" style="--d:.68s;--dur:.15s" stroke="#6BCBCF" stroke-width="1.2" d="M 108 112 Q 104 116 100 112"/>
+          <path class="dp" style="--d:.74s;--dur:.2s" stroke="#6BCBCF" stroke-width="1.3" d="M 88 125 Q 100 132 112 125"/>
           <ellipse class="dp" style="--d:.95s;--dur:.55s" stroke="#FF6A48" stroke-width="2.3" cx="78" cy="88" rx="16" ry="12"/>
           <circle class="hud-ring" cx="78" cy="88" r="9"/>
           <circle class="hud-ring" cx="78" cy="88" r="14"/>
@@ -742,12 +747,12 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
           <path class="dp" style="--d:1.18s;--dur:.15s" stroke="#FF6A48" stroke-width="1.8" d="M 94 88 L 106 88"/>
           <path class="dp" style="--d:1.22s;--dur:.18s" stroke="#FF6A48" stroke-width="1.4" opacity=".7" d="M 62 88 Q 52 89 46 87"/>
           <path class="dp" style="--d:1.22s;--dur:.18s" stroke="#FF6A48" stroke-width="1.4" opacity=".7" d="M 138 88 Q 148 89 154 87"/>
-          <line class="lens-shine scanline" x1="64" y1="88" x2="92" y2="88" stroke="#EDE6D3" stroke-width="0.5"/>
-          <line class="lens-shine scanline" x1="108" y1="88" x2="136" y2="88" stroke="#EDE6D3" stroke-width="0.5"/>
+          <line class="lens-shine scanline" x1="64" y1="88" x2="92" y2="88" stroke="#6BCBCF" stroke-width="0.5"/>
+          <line class="lens-shine scanline" x1="108" y1="88" x2="136" y2="88" stroke="#6BCBCF" stroke-width="0.5"/>
         </g>
 
         <!-- máscara crema de Emiliano -->
-        <path fill="#EDE6D3" transform="translate(18,34)"
+        <path fill="#081826" transform="translate(18,34)"
               d="M 16 246 Q 22 204 50 188 Q 70 178 84 174 L 86 142 L 86 132
                  Q 68 132 58 112 Q 50 96 58 76 Q 56 38 100 28 Q 144 38 142 76
                  Q 150 96 142 112 Q 132 132 114 132 L 114 142 L 116 174
@@ -755,56 +760,66 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
 
         <!-- EMILIANO adelante -->
         <g transform="translate(18,34)">
-          <path class="dp" style="--d:.95s;--dur:.25s" stroke="#EDE6D3" stroke-width="1.35" d="M 86 132 L 86 144"/>
-          <path class="dp" style="--d:.95s;--dur:.25s" stroke="#EDE6D3" stroke-width="1.35" d="M 114 132 L 114 144"/>
-          <path class="dp" style="--d:1.05s;--dur:.7s" stroke="#EDE6D3" stroke-width="1.45" d="M 86 144 Q 70 150 54 160 Q 32 174 24 204 Q 18 226 18 246"/>
-          <path class="dp" style="--d:1.05s;--dur:.7s" stroke="#EDE6D3" stroke-width="1.45" d="M 114 144 Q 130 150 146 160 Q 168 174 176 204 Q 182 226 182 246"/>
+          <path class="dp" style="--d:.95s;--dur:.25s" stroke="#6BCBCF" stroke-width="1.35" d="M 86 132 L 86 144"/>
+          <path class="dp" style="--d:.95s;--dur:.25s" stroke="#6BCBCF" stroke-width="1.35" d="M 114 132 L 114 144"/>
+          <path class="dp" style="--d:1.05s;--dur:.7s" stroke="#6BCBCF" stroke-width="1.45" d="M 86 144 Q 70 150 54 160 Q 32 174 24 204 Q 18 226 18 246"/>
+          <path class="dp" style="--d:1.05s;--dur:.7s" stroke="#6BCBCF" stroke-width="1.45" d="M 114 144 Q 130 150 146 160 Q 168 174 176 204 Q 182 226 182 246"/>
           <!-- cuerpo: cuello de remera, costuras, pliegues, bolsillo con lapicera -->
-          <path class="dp" style="--d:1.35s;--dur:.3s" stroke="#EDE6D3" stroke-width="1.25" d="M 84 146 Q 100 158 116 146"/>
-          <path class="dp" style="--d:1.42s;--dur:.25s" stroke="#EDE6D3" stroke-width="0.9" opacity=".55" d="M 86 150 Q 100 161 114 150"/>
-          <path class="dp" style="--d:1.5s;--dur:.25s" stroke="#EDE6D3" stroke-width="1.0" opacity=".6" d="M 56 162 Q 60 176 58 192"/>
-          <path class="dp" style="--d:1.5s;--dur:.25s" stroke="#EDE6D3" stroke-width="1.0" opacity=".6" d="M 144 162 Q 140 176 142 192"/>
-          <path class="dp" style="--d:1.62s;--dur:.3s" stroke="#EDE6D3" stroke-width="0.85" opacity=".45" d="M 76 196 Q 78 214 76 232"/>
-          <path class="dp" style="--d:1.62s;--dur:.3s" stroke="#EDE6D3" stroke-width="0.85" opacity=".45" d="M 124 196 Q 122 214 124 232"/>
-          <path class="dp" style="--d:1.85s;--dur:.35s" stroke="#EDE6D3" stroke-width="1.05" d="M 112 200 L 136 200 L 136 220 L 112 220 Z"/>
-          <path class="dp" style="--d:2.0s;--dur:.15s" stroke="#EDE6D3" stroke-width="0.8" opacity=".5" d="M 112 205 L 136 205"/>
+          <path class="dp" style="--d:1.35s;--dur:.3s" stroke="#6BCBCF" stroke-width="1.25" d="M 84 146 Q 100 158 116 146"/>
+          <path class="dp" style="--d:1.42s;--dur:.25s" stroke="#6BCBCF" stroke-width="0.9" opacity=".55" d="M 86 150 Q 100 161 114 150"/>
+          <path class="dp" style="--d:1.5s;--dur:.25s" stroke="#6BCBCF" stroke-width="1.0" opacity=".6" d="M 56 162 Q 60 176 58 192"/>
+          <path class="dp" style="--d:1.5s;--dur:.25s" stroke="#6BCBCF" stroke-width="1.0" opacity=".6" d="M 144 162 Q 140 176 142 192"/>
+          <path class="dp" style="--d:1.62s;--dur:.3s" stroke="#6BCBCF" stroke-width="0.85" opacity=".45" d="M 76 196 Q 78 214 76 232"/>
+          <path class="dp" style="--d:1.62s;--dur:.3s" stroke="#6BCBCF" stroke-width="0.85" opacity=".45" d="M 124 196 Q 122 214 124 232"/>
+          <path class="dp" style="--d:1.85s;--dur:.35s" stroke="#6BCBCF" stroke-width="1.05" d="M 112 200 L 136 200 L 136 220 L 112 220 Z"/>
+          <path class="dp" style="--d:2.0s;--dur:.15s" stroke="#6BCBCF" stroke-width="0.8" opacity=".5" d="M 112 205 L 136 205"/>
           <path class="dp" style="--d:2.55s;--dur:.2s" stroke="#FF6A48" stroke-width="2.2" d="M 129 201 L 127 192"/>
           <path class="dp" style="--d:2.62s;--dur:.12s" stroke="#FF6A48" stroke-width="1.0" opacity=".55" d="M 125.5 197 L 130.5 196"/>
           <rect class="clip-led fp" style="--fdd:2.65s;--fd:.2s;--op:0.9" x="131" y="196" width="1.5" height="3"/>
           <circle class="clip-led-dot fp" style="--fdd:2.7s;--fd:.2s;--op:0.9" cx="131.75" cy="200" r="0.8"/>
-          <ellipse class="dp" style="--d:.85s;--dur:1.0s" stroke="#EDE6D3" stroke-width="1.35" cx="100" cy="84" rx="42" ry="50"/>
-          <path class="fp" style="--fdd:1.15s;--fd:.3s;--op:1" fill="#1A1A1F" fill-opacity=".9" d="M 58 76 Q 56 42 78 33 Q 100 26 122 33 Q 144 42 142 76 Q 136 50 100 48 Q 64 50 58 76 Z"/>
-          <path class="dp" style="--d:.92s;--dur:.22s" stroke="#EDE6D3" stroke-width="1.0" d="M 57 84 Q 49 88 49 98 Q 49 108 57 111"/>
-          <path class="dp" style="--d:.92s;--dur:.22s" stroke="#EDE6D3" stroke-width="1.0" d="M 143 84 Q 151 88 151 98 Q 151 108 143 111"/>
-          <path class="fp" style="--fdd:1.7s;--fd:.35s;--op:1" fill="#EDE6D3" fill-opacity=".16" d="M 67 112 Q 76 130 100 134 Q 124 130 133 112 Q 126 122 100 125 Q 74 122 67 112 Z"/>
-          <path class="fp" style="--fdd:1.78s;--fd:.35s;--op:1" fill="#EDE6D3" fill-opacity=".09" d="M 62 100 Q 68 122 88 131 Q 100 135 112 131 Q 132 122 138 100 Q 130 120 100 127 Q 70 120 62 100 Z"/>
-          <g class="fp" style="--fdd:1.95s;--fd:.25s;--op:.4" stroke="#EDE6D3" stroke-width="0.5">
+          <ellipse class="dp" style="--d:.85s;--dur:1.0s" stroke="#6BCBCF" stroke-width="1.35" cx="100" cy="84" rx="42" ry="50"/>
+          <path class="fp" style="--fdd:1.15s;--fd:.3s;--op:1" fill="#EDE6D3" fill-opacity=".9" d="M 58 76 Q 56 42 78 33 Q 100 26 122 33 Q 144 42 142 76 Q 136 50 100 48 Q 64 50 58 76 Z"/>
+          <path class="dp" style="--d:.92s;--dur:.22s" stroke="#6BCBCF" stroke-width="1.0" d="M 57 84 Q 49 88 49 98 Q 49 108 57 111"/>
+          <path class="dp" style="--d:.92s;--dur:.22s" stroke="#6BCBCF" stroke-width="1.0" d="M 143 84 Q 151 88 151 98 Q 151 108 143 111"/>
+          <path class="fp" style="--fdd:1.7s;--fd:.35s;--op:1" fill="#6BCBCF" fill-opacity=".16" d="M 67 112 Q 76 130 100 134 Q 124 130 133 112 Q 126 122 100 125 Q 74 122 67 112 Z"/>
+          <path class="fp" style="--fdd:1.78s;--fd:.35s;--op:1" fill="#6BCBCF" fill-opacity=".09" d="M 62 100 Q 68 122 88 131 Q 100 135 112 131 Q 132 122 138 100 Q 130 120 100 127 Q 70 120 62 100 Z"/>
+          <g class="fp" style="--fdd:1.95s;--fd:.25s;--op:.4" stroke="#6BCBCF" stroke-width="0.5">
             <path d="M 78 119 Q 80 124 83 127"/><path d="M 90 125 Q 91 128 93 131"/>
             <path d="M 100 127 L 100 132"/><path d="M 110 125 Q 109 128 107 131"/>
             <path d="M 122 119 Q 120 124 117 127"/>
           </g>
-          <path class="dp" style="--d:1.5s;--dur:.2s" stroke="#1A1A1F" stroke-width="1.4" d="M 64 70 Q 74 65 84 68"/>
-          <path class="dp" style="--d:1.5s;--dur:.2s" stroke="#1A1A1F" stroke-width="1.4" d="M 116 68 Q 126 65 136 70"/>
-          <path class="dp" style="--d:1.55s;--dur:.18s" stroke="#1A1A1F" stroke-width="0.9" d="M 70 81 Q 78 78 86 81"/>
-          <path class="dp" style="--d:1.55s;--dur:.18s" stroke="#1A1A1F" stroke-width="0.9" d="M 114 81 Q 122 78 130 81"/>
-          <circle class="fp" style="--fdd:1.68s;--fd:.16s;--op:1" cx="78" cy="84" r="2.4" fill="#1A1A1F"/>
-          <circle class="fp" style="--fdd:1.68s;--fd:.16s;--op:1" cx="122" cy="84" r="2.4" fill="#1A1A1F"/>
-          <path class="dp" style="--d:1.6s;--dur:.22s" stroke="#EDE6D3" stroke-width="1.0" d="M 100 90 Q 97 102 99 107 Q 100 109 101 107 Q 103 102 100 90"/>
-          <path class="dp" style="--d:1.62s;--dur:.15s" stroke="#EDE6D3" stroke-width="1.0" d="M 92 108 Q 96 112 100 108"/>
-          <path class="dp" style="--d:1.62s;--dur:.15s" stroke="#EDE6D3" stroke-width="1.0" d="M 108 108 Q 104 112 100 108"/>
-          <path class="dp" style="--d:1.72s;--dur:.18s" stroke="#EDE6D3" stroke-width="0.9" opacity=".6" d="M 87 116 Q 94 112 100 114"/>
-          <path class="dp" style="--d:1.72s;--dur:.18s" stroke="#EDE6D3" stroke-width="0.9" opacity=".6" d="M 113 116 Q 106 112 100 114"/>
-          <path class="dp" style="--d:1.78s;--dur:.2s" stroke="#EDE6D3" stroke-width="1.1" d="M 89 121 Q 100 127 111 121"/>
+          <path class="dp" style="--d:1.5s;--dur:.2s" stroke="#EDE6D3" stroke-width="1.4" d="M 64 70 Q 74 65 84 68"/>
+          <path class="dp" style="--d:1.5s;--dur:.2s" stroke="#EDE6D3" stroke-width="1.4" d="M 116 68 Q 126 65 136 70"/>
+          <path class="dp" style="--d:1.55s;--dur:.18s" stroke="#EDE6D3" stroke-width="0.9" d="M 70 81 Q 78 78 86 81"/>
+          <path class="dp" style="--d:1.55s;--dur:.18s" stroke="#EDE6D3" stroke-width="0.9" d="M 114 81 Q 122 78 130 81"/>
+          <circle class="fp" style="--fdd:1.68s;--fd:.16s;--op:1" cx="78" cy="84" r="2.4" fill="#EDE6D3"/>
+          <circle class="fp" style="--fdd:1.68s;--fd:.16s;--op:1" cx="122" cy="84" r="2.4" fill="#EDE6D3"/>
+          <path class="dp" style="--d:1.6s;--dur:.22s" stroke="#6BCBCF" stroke-width="1.0" d="M 100 90 Q 97 102 99 107 Q 100 109 101 107 Q 103 102 100 90"/>
+          <path class="dp" style="--d:1.62s;--dur:.15s" stroke="#6BCBCF" stroke-width="1.0" d="M 92 108 Q 96 112 100 108"/>
+          <path class="dp" style="--d:1.62s;--dur:.15s" stroke="#6BCBCF" stroke-width="1.0" d="M 108 108 Q 104 112 100 108"/>
+          <path class="dp" style="--d:1.72s;--dur:.18s" stroke="#6BCBCF" stroke-width="0.9" opacity=".6" d="M 87 116 Q 94 112 100 114"/>
+          <path class="dp" style="--d:1.72s;--dur:.18s" stroke="#6BCBCF" stroke-width="0.9" opacity=".6" d="M 113 116 Q 106 112 100 114"/>
+          <path class="dp" style="--d:1.78s;--dur:.2s" stroke="#6BCBCF" stroke-width="1.1" d="M 89 121 Q 100 127 111 121"/>
           <ellipse class="dp" style="--d:2.1s;--dur:.6s" stroke="#FF6A48" stroke-width="1.9" cx="78" cy="84" rx="16" ry="12"/>
           <ellipse class="dp" style="--d:2.22s;--dur:.6s" stroke="#FF6A48" stroke-width="1.9" cx="122" cy="84" rx="16" ry="12"/>
           <path class="dp" style="--d:2.36s;--dur:.16s" stroke="#FF6A48" stroke-width="1.5" d="M 94 84 L 106 84"/>
           <path class="dp" style="--d:2.4s;--dur:.2s" stroke="#FF6A48" stroke-width="1.2" opacity=".7" d="M 62 84 Q 52 85 46 83"/>
           <path class="dp" style="--d:2.4s;--dur:.2s" stroke="#FF6A48" stroke-width="1.2" opacity=".7" d="M 138 84 Q 148 85 154 83"/>
-          <line class="lens-shine scanline" x1="64" y1="84" x2="92" y2="84" stroke="#EDE6D3" stroke-width="0.5"/>
-          <line class="lens-shine scanline" x1="108" y1="84" x2="136" y2="84" stroke="#EDE6D3" stroke-width="0.5"/>
+          <line class="lens-shine scanline" x1="64" y1="84" x2="92" y2="84" stroke="#6BCBCF" stroke-width="0.5"/>
+          <line class="lens-shine scanline" x1="108" y1="84" x2="136" y2="84" stroke="#6BCBCF" stroke-width="0.5"/>
         </g>
 
         <circle class="clay-dot fp" style="--fdd:2.65s;--fd:.2s;--op:1" cx="190" cy="272" r="2.5" fill="#FF6A48"/>
+        <!-- sinapsis: la idea compartida entre los dos -->
+        <path class="lam-syn" stroke="#6BCBCF" stroke-width="1.3" fill="none" d="M 128 96 Q 180 46 232 88"/>
+        <circle class="lam-idea" cx="181" cy="66" r="3.4" fill="#E2A33B"/>
+        <circle class="lam-idea" cx="181" cy="66" r="7.5" fill="none" stroke="#E2A33B" stroke-width=".8" opacity=".4"/>
+        <!-- células bioluminiscentes orbitando -->
+        <circle class="fcell" style="--t:5.5s;--fd2:0s"  cx="34"  cy="120" r="2.2" fill="#FF6A48" opacity=".6"/>
+        <circle class="fcell" style="--t:7s;--fd2:1.2s"  cx="352" cy="150" r="1.8" fill="#6BCBCF" opacity=".6"/>
+        <circle class="fcell" style="--t:6.2s;--fd2:.6s" cx="322" cy="70"  r="1.5" fill="#E2A33B" opacity=".55"/>
+        <circle class="fcell" style="--t:8s;--fd2:2s"    cx="52"  cy="210" r="1.6" fill="#6BCBCF" opacity=".5"/>
+        <circle class="fcell" style="--t:6.8s;--fd2:.9s" cx="348" cy="236" r="2"   fill="#FF6A48" opacity=".45"/>
       </svg>
     </div>
     <div class="founders-grid">
