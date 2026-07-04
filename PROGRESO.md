@@ -97,6 +97,27 @@
 - ✅ **Contraste WCAG**: `ink #EDE6D3` sobre `deep #081826` = ratio 14.42:1, pasa AA y AAA. `ink-70` sobre deep también pasa AA (ratio estimado ~10.3:1).
 - ✅ **H1 con keyword**: "IA, datos y seguridad para PyMEs." contiene IA, datos, seguridad, PyMEs.
 
+### 2026-07-04 — Branch `orb-redesign` — Rediseño del orb
+**Qué**: Nuevo orb como red neuronal orgánica con SVG + CSS mejorado
+**Por qué**: El usuario rechazó el orb anterior por ser "súper genérico, no dice nada, no me dice IA". El handoff ya advertía que una versión CSS previa había sido rechazada por "feo".
+**Enfoque**: Opción A — CSS + SVG mejorado (sin canvas). Más rápido de iterar, menos riesgo de performance, permite ver resultados inmediatos en el preview local.
+**Elementos visuales:**
+1. **Núcleo central**: círculo con gradientes coral/aqua/ink que late (`orbcore 6s`).
+2. **Fondo orgánico**: halo degradado petróleo que respira (`orbbg 7s`).
+3. **Red neuronal**: 8 nodos conectados al centro + 17 conexiones entre nodos.
+4. **Pulsos eléctricos**: 7 líneas con `stroke-dashoffset` que viajan del borde al núcleo (aqua y coral), simulando sinapsis.
+5. **Anillos orbitales**: 3 círculos punteados que giran a distintas velocidades (22s, 34s, 18s).
+6. **Nodos**: 1 núcleo ink, 3 nodos coral, 2 nodos amber, 2 nodos aqua; cada uno pulsa con delay propio.
+7. **Glow**: filtro SVG `feGaussianBlur` + `feMerge` sobre nodos y pulsos (no es blur sobre canvas, es SVG estático).
+**Mantenimiento de paleta**: todo usa variables CSS oficiales (`--coral`, `--aqua`, `--amber`, `--ink`, `--deep`, `--panel`).
+**Performance / pausas:**
+- IntersectionObserver pausa `#orbWrap` fuera de viewport (`anim-paused`).
+- `body.scrolling` pausa todas las animaciones durante scroll.
+- `@media(prefers-reduced-motion:reduce)` desactiva animaciones del orb y deja nodos estáticos.
+- Mobile (≤740px) ralentiza anillos orbitales a 80s para no saturar.
+**Preview**: `http://127.0.0.1:57212` (proxy IDE) y `http://127.0.0.1:8080` (servidor local).
+**Estado**: ✅ implementado · 🔍 pendiente de aprobación del usuario
+
 ---
 
 ## Tareas pendientes
