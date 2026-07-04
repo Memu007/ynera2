@@ -77,8 +77,8 @@ img,svg{display:block;max-width:100%}
 ::-webkit-scrollbar-track{background:var(--deep)}
 ::-webkit-scrollbar-thumb{background:#1C3A50;border-radius:99px;border:2px solid var(--deep)}
 
-.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
-.wrap-tight{max-width:860px;margin:0 auto;padding:0 28px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 22px}
+.wrap-tight{max-width:860px;margin:0 auto;padding:0 22px}
 
 h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;letter-spacing:-.01em}
 h2{font-size:clamp(30px,4.4vw,48px)}
@@ -99,7 +99,7 @@ body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opa
 /* ── Nav ── */
 nav#nav{position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:1px solid transparent;transition:background .35s,border-color .35s}
 nav#nav.scrolled{background:rgba(8,24,38,.94);border-color:var(--ink-12)}
-.nav-inner{max-width:1140px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav-inner{max-width:1280px;margin:0 auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .logo{font-family:var(--serif);font-weight:600;font-size:21px;display:flex;align-items:center;gap:11px;font-style:italic}
 .nav-links{display:flex;align-items:center;gap:28px}
 .nav-links a{font-family:var(--mono);font-size:12.5px;color:var(--ink-45);transition:color .2s}
@@ -200,7 +200,7 @@ section{padding:110px 0;position:relative}
 .origin-prose strong{color:var(--ink);font-weight:600}
 
 /* ── pilares ── */
-.pilar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pilar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .pilar{position:relative;border:1px solid var(--ink-12);background:linear-gradient(170deg,var(--panel),var(--deep-2));padding:0;border-radius:6px;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .4s;display:flex;flex-direction:column}
 .pilar::before{content:"";position:absolute;top:-30%;right:-20%;width:70%;height:60%;background:radial-gradient(circle,var(--pc,var(--coral)) 0%,transparent 65%);opacity:.08;pointer-events:none;z-index:0;transition:opacity .4s}
 .pilar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pc,var(--coral));transform:scaleY(.3);transform-origin:top;transition:transform .45s cubic-bezier(.2,.7,.2,1);z-index:2}
@@ -208,11 +208,11 @@ section{padding:110px 0;position:relative}
 .pilar:hover::before{opacity:.18}
 .pilar:hover::after{transform:scaleY(1)}
 .pilar:hover .organ-beat{animation-duration:1.1s}
-.pilar-top{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:30px 28px 0}
+.pilar-top{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:26px 24px 0}
 .pilar-num{font-family:var(--serif);font-style:italic;font-weight:600;font-size:44px;line-height:1;color:var(--pc,var(--coral));opacity:.85;letter-spacing:-.02em}
 .pilar-organ{width:56px;height:56px;position:relative;flex:none}
 .pilar-organ svg{width:100%;height:100%;overflow:visible}
-.pilar-body{position:relative;z-index:1;padding:18px 28px 26px;flex:1;display:flex;flex-direction:column}
+.pilar-body{position:relative;z-index:1;padding:18px 24px 26px;flex:1;display:flex;flex-direction:column}
 .pilar-tag{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--pc,var(--coral));opacity:.7;margin-bottom:8px;display:block}
 .pilar h3{font-size:26px;margin-bottom:12px}
 .pilar-lead{color:var(--ink-70);font-size:14.5px;margin-bottom:20px;line-height:1.55}
@@ -226,8 +226,8 @@ section{padding:110px 0;position:relative}
 @keyframes organbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 
 /* ── productos ── */
-.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.prod{position:relative;border:1px solid var(--ink-12);background:linear-gradient(170deg,var(--panel),var(--deep-2));padding:32px 28px;transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden;border-radius:4px}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.prod{position:relative;border:1px solid var(--ink-12);background:linear-gradient(170deg,var(--panel),var(--deep-2));padding:26px 24px;transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden;border-radius:4px}
 .prod::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pc,var(--coral));transform:scaleY(0);transform-origin:top;transition:transform .35s ease}
 .prod:hover{transform:translateY(-5px);border-color:var(--ink-25);box-shadow:0 26px 50px -20px rgba(0,0,0,.55)}
 .prod:hover::after{transform:scaleY(1)}
@@ -241,7 +241,7 @@ section{padding:110px 0;position:relative}
 .prod:hover .organ-beat{animation-duration:1.1s}
 .prod-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:13px;color:var(--coral);text-decoration:none;margin-top:12px;padding:8px 16px;border:1px solid rgba(255,106,72,.3);border-radius:8px;transition:background .2s,border-color .2s}
 .prod-link:hover{background:rgba(255,106,72,.08);border-color:var(--coral)}
-.prod-shot{width:100%;max-width:280px;height:auto;max-height:180px;object-fit:cover;border-radius:10px;margin-top:16px;border:1px solid var(--ink-15);display:block}
+.prod-shot{width:100%;max-width:320px;height:auto;max-height:150px;object-fit:cover;border-radius:8px;margin-top:14px;border:1px solid var(--ink-15);display:block}
 
 /* ── founders ── */
 .founders-lamina{position:relative;max-width:500px;margin:0 auto 56px;padding:0 10px}
