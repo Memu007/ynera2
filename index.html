@@ -89,7 +89,7 @@ h2 em,h1 em{font-weight:600}
 .cell{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px rgba(255,106,72,.15);flex:none}
 .tag{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-45);display:inline-flex;align-items:center;gap:12px}
 
-body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='80' height='80' filter='url(%23n)'/%3E%3C/svg%3E");background-size:80px 80px}
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");background-size:140px 140px}
 
 .nerve{max-width:1140px;margin:0 auto;height:1px;position:relative;overflow:hidden;background:linear-gradient(90deg,transparent,var(--ink-12) 15%,var(--ink-12) 85%,transparent)}
 .nerve::after{content:"";position:absolute;top:0;bottom:0;left:0;width:12%;background:linear-gradient(90deg,transparent,var(--coral),transparent);will-change:transform;animation:nervetravel 11s cubic-bezier(.4,.1,.5,.9) infinite;animation-delay:var(--nd,0s)}
@@ -222,7 +222,7 @@ section{padding:110px 0;position:relative}
 .pilar-list li .bullet{width:6px;height:6px;border-radius:50%;background:var(--pc,var(--coral));flex:none;opacity:.7}
 .pilar-list li:hover{color:var(--ink);padding-left:4px}
 .pilar-list li:hover .bullet{opacity:1}
-.organ-beat{transform-box:fill-box;transform-origin:center;animation:organbeat 3.4s ease-in-out infinite}
+.organ-beat{transform-box:fill-box;transform-origin:center;will-change:transform;animation:organbeat 3.4s ease-in-out infinite}
 @keyframes organbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 
 /* ── productos ── */
