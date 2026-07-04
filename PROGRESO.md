@@ -153,6 +153,48 @@
 - Card 2: Emiliano → Mariano (Datos · Negocio)
 **Estado**: ✅ corregido
 
+### 2026-07-04 — Diagnóstico de performance: 22 → 10 animaciones infinitas — commit `1222a16`
+**Qué**: Reducción drástica de animaciones infinitas simultáneas para eliminar lag.
+**Por qué**: El usuario seguía con lag. Diagnóstico de PM: 22 animaciones infinitas, incluyendo `filter:blur(14px)` sobre 360px, `border-radius` animado, `box-shadow` en elementos animados, y 8 nervetravel simultáneos.
+
+**SACAR (12 animaciones)**:
+- `.orb2-glow`: `filter:blur(14px)` eliminado → gradient sin blur, opacity-only
+- `.orb-membrane`: `border-radius` animado → `transform: scale+rotate`, `box-shadow` → `.orb-halo` estático
+- `.orb-orga`: `box-shadow` eliminado (solo transform+opacity)
+- `.pilar` `pilarbreathe` → estático
+- `.pilar-list .bullet` `cellbeat` → opacidad fija `.7`
+- `.metodo-nodo-ring` `cellbeat` → estático
+- `.prod-live i` `cellbeat` → estático
+- `.cell` (nav) `cellbeat` → estático con `box-shadow` fijo
+- `.holo-idea` `hIdeaFloat` → opacidad fija post-entrance
+- `.lamina-halo` `halobreathe` → estático
+- `.founders-lamina` `lambreathe` → estático
+- `.fcell` `fcellfloat` → estático
+- `.lam-syn` `lamsynflow` → estático (`stroke-dashoffset` no GPU-safe)
+- `.lam-idea` `lamClayPulse` → estático
+- `.orb-halo` `haloPulse` → estático
+
+**MANTENER (10 animaciones, todas transform/opacity only)**:
+1. `.orb-membrane` morph (transform)
+2. `.orb-cyto` breathe (transform+opacity)
+3. `.orb-nucleus` beat (transform+opacity)
+4. 2x `.orb-orga` float (transform+opacity)
+5. `.orb-voice .vcaret` blink (opacity)
+6. `.orb2-glow` breathe (opacity only, sin blur)
+7. 4x `.nerve::after` nervetravel (transform, delays 0s/3s/6s/9s)
+8. 3x `.organ-beat` (transform)
+9. `.clay-dot` + `.lens-shine` + `.tat-leaf` founders SVG (transform/opacity)
+10. `.holo-idea` hIdeaIn (entrance, no infinite)
+
+**Fixes adicionales**:
+- `nervetravel`: `left` → `transform:translateX` (GPU-safe)
+- `will-change` agregado a todos los elementos animados
+- 4 `.nerve` marcados como `nerve-static` (sin animación)
+- `reduced-motion` y mobile media queries actualizadas
+- Cero `filter:blur()`, cero `box-shadow` animado, cero `border-radius` animado
+
+**Estado**: ✅ implementado · 🔍 pendiente de aprobación del usuario
+
 ---
 
 ## Tareas pendientes
