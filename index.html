@@ -110,30 +110,37 @@ nav#nav.scrolled{background:rgba(8,24,38,.94);border-color:var(--ink-12)}
 .hero-mail{color:var(--aqua);text-decoration:underline;text-underline-offset:3px}
 .hero-mail:hover{color:var(--coral)}
 
-/* ── ORB (versión CSS liviana, sin canvas) ── */
+/* ── ORB (red neuronal orgánica, CSS + SVG) ── */
 .orb-wrap{position:relative;width:min(440px,84vw);aspect-ratio:1;display:grid;place-items:center}
-.orb-core{position:absolute;inset:8%;border-radius:50%;
+.orb-wrap svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.orb-wrap .orb-bg{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%, rgba(14,42,63,.85), rgba(8,24,38,.9) 58%, rgba(8,24,38,0) 72%);
+  animation:orbbg 7s ease-in-out infinite}
+@keyframes orbbg{0%,100%{transform:scale(1);opacity:.95}50%{transform:scale(1.04);opacity:1}}
+.orb-wrap .orb-core{position:absolute;inset:18%;border-radius:50%;
   background:
-    radial-gradient(circle at 40% 38%, rgba(255,245,233,.95), rgba(255,180,142,.5) 30%, rgba(255,150,110,0) 60%),
-    radial-gradient(circle at 60% 65%, rgba(150,232,234,.4), rgba(150,232,234,0) 55%),
-    radial-gradient(circle at 50% 50%, rgba(255,122,90,.85), rgba(255,106,72,.4) 40%, rgba(255,106,72,0) 70%),
-    radial-gradient(circle at 45% 45%, rgba(122,215,219,.7), rgba(107,203,207,.25) 45%, rgba(107,203,207,0) 70%);
-  filter:saturate(1.15);animation:orbbreathe 5.5s ease-in-out infinite;will-change:transform,opacity}
-@keyframes orbbreathe{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.05);opacity:1}}
-.orb-heart{position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle at 42% 40%, rgba(255,252,246,.85), rgba(255,180,142,.3) 50%, rgba(255,150,110,0) 75%);animation:orbeat 2.4s ease-in-out infinite;will-change:transform,opacity}
-@keyframes orbeat{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.12);opacity:1}}
-.orb-wrap.excited .orb-core{animation-duration:3s;transform:scale(1.03)}
-.orb-wrap.excited .orb-heart{animation-duration:1.2s}
-.orb-net{position:absolute;inset:0;pointer-events:none}
-.orb-net .nd{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--aqua);box-shadow:0 0 6px var(--aqua);opacity:0;animation:ndpulse var(--nd-t,4s) ease-in-out var(--nd-d,0s) infinite}
-.orb-net .nd.coral{background:var(--coral);box-shadow:0 0 6px var(--coral)}
-.orb-net .nd.amber{background:var(--amber);box-shadow:0 0 6px var(--amber)}
-@keyframes ndpulse{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:.9;transform:scale(1.15)}}
-.orb-ring{position:absolute;inset:9%;border-radius:50%;border:1px solid var(--ink-25);animation:ringspin 26s linear infinite}
-.orb-ring::before{content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--ink);box-shadow:0 0 12px var(--ink)}
-@keyframes ringspin{to{transform:rotate(360deg)}}
-.orb-ring2{position:absolute;inset:-2%;border-radius:50%;border:1px dashed var(--ink-12);animation:ringspin 60s linear infinite reverse}
-.orb-voice{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--aqua);letter-spacing:.06em}
+    radial-gradient(circle at 40% 38%, rgba(255,106,72,.55), rgba(255,106,72,0) 45%),
+    radial-gradient(circle at 62% 64%, rgba(107,203,207,.4), rgba(107,203,207,0) 50%),
+    radial-gradient(circle at 50% 50%, rgba(237,230,211,.1), rgba(237,230,211,0) 60%);
+  animation:orbcore 6s ease-in-out infinite;mix-blend-mode:screen}
+@keyframes orbcore{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.08);opacity:1}}
+.orb-wrap.excited .orb-bg{animation-duration:3.5s}
+.orb-wrap.excited .orb-core{animation-duration:3s;transform:scale(1.05)}
+.orb-node{fill:var(--aqua);animation:nodePulse var(--np,4s) ease-in-out var(--nd,0s) infinite}
+.orb-node.coral{fill:var(--coral)}
+.orb-node.amber{fill:var(--amber)}
+.orb-node.core{fill:var(--ink);animation:corePulse 3s ease-in-out infinite}
+@keyframes nodePulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+@keyframes corePulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+.orb-link{stroke:var(--ink-25);stroke-width:1;fill:none;animation:linkFaint 5s ease-in-out infinite}
+@keyframes linkFaint{0%,100%{opacity:.2}50%{opacity:.45}}
+.orb-pulse{fill:none;stroke:var(--aqua);stroke-width:2;stroke-linecap:round;opacity:0;animation:orbitPulse var(--pp,3.2s) linear var(--pd,0s) infinite}
+.orb-pulse.coral{stroke:var(--coral)}
+@keyframes orbitPulse{0%{stroke-dashoffset:120;opacity:0}10%{opacity:.9}90%{opacity:.9}100%{stroke-dashoffset:0;opacity:0}}
+.orb-ring-orbit{fill:none;stroke:var(--ink-12);stroke-width:1;stroke-dasharray:4 4;animation:orbitSpin var(--os,28s) linear infinite}
+.orb-ring-orbit.reverse{animation-direction:reverse}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+.orb-voice{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:12px;color:var(--aqua);letter-spacing:.06em;z-index:2}
 .orb-voice::before{content:"◉ ";color:var(--coral)}
 .orb-voice .vcaret{display:inline-block;width:7px;height:13px;vertical-align:-2px;background:var(--aqua);margin-left:3px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -325,7 +332,7 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
 
 @media(max-width:740px){
   .nerve::after{animation:none}
-  .orb-ring2{animation-duration:120s}
+  .orb-ring-orbit{animation-duration:80s}
   .fcell{animation:none;opacity:.4}
   .holo-idea{animation:none;opacity:.4}
   .sprint-card{padding:24px 22px}
@@ -336,8 +343,9 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
   .reveal{opacity:1!important;transform:none!important}
-  .orb-core,.orb-heart,.orb2-glow,.orb-net .nd{animation:none!important}
-  .orb-net .nd{opacity:.5}
+  .orb-bg,.orb-core,.orb-node,.orb-link,.orb-pulse,.orb-ring-orbit,.orb-voice .vcaret{animation:none!important}
+  .orb-node{opacity:.5}
+  .orb-pulse{opacity:0}
 }
 </style>
 </head>
@@ -375,12 +383,64 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
       </div>
       <p class="hero-note">respuesta en <b>&lt; 24 hs hábiles</b> · hablás con un founder, no con un bot</p>
     </div>
-    <div class="orb-wrap" id="orbWrap">
+    <div class="orb-wrap" id="orbWrap" aria-label="Organismo de IA: red neuronal orgánica">
+      <div class="orb-bg" aria-hidden="true"></div>
       <div class="orb-core" aria-hidden="true"></div>
-      <div class="orb-heart" aria-hidden="true"></div>
-      <div class="orb-net" aria-hidden="true" id="orbNet"></div>
-      <div class="orb-ring" aria-hidden="true"></div>
-      <div class="orb-ring2" aria-hidden="true"></div>
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <filter id="orbGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- anillos orbitales que giran -->
+        <g transform="translate(100,100)">
+          <circle class="orb-ring-orbit" r="78" style="--os:22s"/>
+          <circle class="orb-ring-orbit reverse" r="62" style="--os:34s"/>
+          <circle class="orb-ring-orbit" r="46" style="--os:18s"/>
+        </g>
+        <!-- conexiones de red neuronal -->
+        <g class="orb-links" filter="url(#orbGlow)">
+          <path class="orb-link" d="M100 100 L68 42"/>
+          <path class="orb-link" d="M100 100 L145 55"/>
+          <path class="orb-link" d="M100 100 L162 108"/>
+          <path class="orb-link" d="M100 100 L138 156"/>
+          <path class="orb-link" d="M100 100 L76 160"/>
+          <path class="orb-link" d="M100 100 L38 108"/>
+          <path class="orb-link" d="M100 100 L42 58"/>
+          <path class="orb-link" d="M68 42 L145 55"/>
+          <path class="orb-link" d="M145 55 L162 108"/>
+          <path class="orb-link" d="M162 108 L138 156"/>
+          <path class="orb-link" d="M138 156 L76 160"/>
+          <path class="orb-link" d="M76 160 L38 108"/>
+          <path class="orb-link" d="M38 108 L42 58"/>
+          <path class="orb-link" d="M42 58 L68 42"/>
+          <path class="orb-link" d="M68 42 L162 108"/>
+          <path class="orb-link" d="M145 55 L76 160"/>
+          <path class="orb-link" d="M42 58 L138 156"/>
+        </g>
+        <!-- pulsos eléctricos que viajan por la red -->
+        <g class="orb-pulses" filter="url(#orbGlow)">
+          <path class="orb-pulse" d="M68 42 L100 100" style="--pp:2.8s;--pd:0s"/>
+          <path class="orb-pulse coral" d="M145 55 L100 100" style="--pp:3.4s;--pd:.6s"/>
+          <path class="orb-pulse" d="M162 108 L100 100" style="--pp:3.0s;--pd:1.2s"/>
+          <path class="orb-pulse coral" d="M138 156 L100 100" style="--pp:3.6s;--pd:1.8s"/>
+          <path class="orb-pulse" d="M76 160 L100 100" style="--pp:2.6s;--pd:2.4s"/>
+          <path class="orb-pulse" d="M38 108 L100 100" style="--pp:3.2s;--pd:3.0s"/>
+          <path class="orb-pulse" d="M42 58 L100 100" style="--pp:3.8s;--pd:3.6s"/>
+        </g>
+        <!-- nodos de la red -->
+        <g class="orb-nodes" filter="url(#orbGlow)">
+          <circle class="orb-node core" cx="100" cy="100" r="5"/>
+          <circle class="orb-node coral" cx="68" cy="42" r="3.5" style="--np:3.2s;--nd:0s"/>
+          <circle class="orb-node" cx="145" cy="55" r="3" style="--np:4.1s;--nd:.5s"/>
+          <circle class="orb-node amber" cx="162" cy="108" r="3.5" style="--np:3.6s;--nd:1.1s"/>
+          <circle class="orb-node coral" cx="138" cy="156" r="3" style="--np:3.9s;--nd:1.7s"/>
+          <circle class="orb-node" cx="76" cy="160" r="3.5" style="--np:4.3s;--nd:2.3s"/>
+          <circle class="orb-node" cx="38" cy="108" r="3" style="--np:3.5s;--nd:2.9s"/>
+          <circle class="orb-node amber" cx="42" cy="58" r="3.5" style="--np:4.0s;--nd:3.5s"/>
+        </g>
+      </svg>
       <p class="orb-voice" aria-hidden="true"><span id="orbSays"></span><span class="vcaret"></span></p>
     </div>
   </div>
@@ -904,28 +964,6 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
   var baEl = document.getElementById('baTime');
   function tickBA(){ try{ if(baEl) baEl.textContent = new Intl.DateTimeFormat('es-AR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/Argentina/Buenos_Aires'}).format(new Date()); }catch(e){} }
   tickBA(); setInterval(tickBA, 30000);
-
-  /* red neuronal del orb: 12 dots en anillo (CSS los pulsa) */
-  var orbNet = document.getElementById('orbNet');
-  if(orbNet && !reduced){
-    var dots = [
-      {x:88,y:50,t:4.2,d:0,c:''},{x:83,y:69,t:3.8,d:.4,c:'coral'},
-      {x:69,y:83,t:4.5,d:.8,c:''},{x:50,y:88,t:4.0,d:1.2,c:'amber'},
-      {x:31,y:83,t:4.6,d:.2,c:''},{x:17,y:69,t:3.9,d:.6,c:'coral'},
-      {x:12,y:50,t:4.3,d:1.0,c:''},{x:17,y:31,t:4.1,d:1.4,c:''},
-      {x:31,y:17,t:4.7,d:.3,c:'amber'},{x:50,y:12,t:3.7,d:.7,c:''},
-      {x:69,y:17,t:4.4,d:1.1,c:'coral'},{x:83,y:31,t:4.2,d:1.5,c:''}
-    ];
-    dots.forEach(function(d){
-      var el = document.createElement('span');
-      el.className = 'nd' + (d.c ? ' ' + d.c : '');
-      el.style.top = d.y + '%';
-      el.style.left = d.x + '%';
-      el.style.setProperty('--nd-t', d.t + 's');
-      el.style.setProperty('--nd-d', d.d + 's');
-      orbNet.appendChild(el);
-    });
-  }
 
   /* hover del orb: acelera la respiración */
   var orbWrap = document.getElementById('orbWrap');
