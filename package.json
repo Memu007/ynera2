@@ -1,0 +1,12 @@
+{
+  "name": "ynera",
+  "version": "1.0.0",
+  "description": "Ynera — Consultoría de IA, datos y seguridad para PyMEs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
