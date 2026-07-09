@@ -133,43 +133,9 @@ nav#nav.scrolled{background:rgba(8,24,38,.94);border-color:var(--ink-12)}
 .hero-mail{color:var(--aqua);text-decoration:underline;text-underline-offset:3px}
 .hero-mail:hover{color:var(--coral)}
 
-/* ── ORB (organismo/célula, CSS puro liviano) ── */
+/* ── ORB (video del organismo) ── */
 .orb-wrap{position:relative;width:min(440px,84vw);aspect-ratio:1;display:grid;place-items:center}
-/* 1. Membrana — blob orgánico que morph suavemente */
-.orb-halo{position:absolute;inset:4%;border-radius:50%;pointer-events:none;box-shadow:0 0 60px rgba(255,106,72,.08),0 0 100px rgba(107,203,207,.05);opacity:.7}
-.orb-membrane{position:absolute;inset:8%;border-radius:50% 50% 45% 55% / 55% 45% 50% 50%;
-  background:radial-gradient(circle at 42% 38%, rgba(255,106,72,.18), rgba(255,106,72,0) 55%),
-             radial-gradient(circle at 60% 65%, rgba(107,203,207,.12), rgba(107,203,207,0) 55%);
-  border:1px solid rgba(237,230,211,.08);
-  will-change:transform;animation:morph 8s ease-in-out infinite}
-@keyframes morph{
-  0%,100%{transform:scale(1)}
-  33%{transform:scale(1.02) rotate(2deg)}
-  66%{transform:scale(.99) rotate(-1deg)}
-}
-/* 2. Citoplasma — gradient sutil que respira */
-.orb-cyto{position:absolute;inset:16%;border-radius:inherit;
-  background:radial-gradient(circle at 50% 50%, rgba(14,42,63,.6), rgba(8,24,38,.2) 70%);
-  will-change:transform,opacity;animation:cytoBreathe 6s ease-in-out infinite}
-@keyframes cytoBreathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:.9;transform:scale(1.03)}}
-/* 3. Núcleo — círculo coral que late */
-.orb-nucleus{position:absolute;inset:34%;border-radius:50%;
-  background:radial-gradient(circle at 42% 40%, rgba(255,106,72,.7), rgba(255,106,72,.3) 60%, rgba(255,106,72,0) 80%);
-  will-change:transform,opacity;animation:nucleusBeat 3.5s ease-in-out infinite}
-@keyframes nucleusBeat{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.15);opacity:1}}
-/* 4-5. Organelas — 2 puntos que flotan dentro */
-.orb-orga{position:absolute;width:6px;height:6px;border-radius:50%;will-change:transform,opacity;animation:orgaFloat var(--of,10s) ease-in-out var(--od,0s) infinite}
-.orb-orga.aqua{background:var(--aqua)}
-.orb-orga.amber{background:var(--amber)}
-@keyframes orgaFloat{
-  0%,100%{transform:translate(0,0);opacity:.5}
-  25%{transform:translate(12px,-8px);opacity:.9}
-  50%{transform:translate(-6px,10px);opacity:.6}
-  75%{transform:translate(-10px,-6px);opacity:.85}
-}
-/* hover: acelera el organismo */
-.orb-wrap.excited .orb-membrane{animation-duration:4s}
-.orb-wrap.excited .orb-nucleus{animation-duration:1.8s}
+.orb-video{width:100%;height:100%;object-fit:cover;border-radius:50%;pointer-events:none}
 /* voz del organismo */
 .orb-voice{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:12.5px;color:var(--aqua);letter-spacing:.06em;z-index:2}
 .orb-voice::before{content:"◉ ";color:var(--coral)}
@@ -425,13 +391,9 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
       <p class="hero-note">respondemos en <b>&lt; 24 hs hábiles</b> · hablás directo con quien escribe el código</p>
     </div>
     <div class="orb-wrap" id="orbWrap" aria-label="Organismo de IA: célula viva">
-      <div class="orb-halo" aria-hidden="true"></div>
-      <div class="orb-membrane" aria-hidden="true">
-        <div class="orb-cyto" aria-hidden="true"></div>
-        <div class="orb-nucleus" aria-hidden="true"></div>
-        <div class="orb-orga aqua" aria-hidden="true" style="top:28%;left:62%;--of:10s;--od:0s"></div>
-        <div class="orb-orga amber" aria-hidden="true" style="top:65%;left:30%;--of:12s;--od:3s"></div>
-      </div>
+      <video class="orb-video" autoplay muted loop playsinline preload="auto">
+        <source src="hero-orb.mp4" type="video/mp4">
+      </video>
       <p class="orb-voice" aria-hidden="true"><span id="orbSays"></span><span class="vcaret"></span></p>
     </div>
   </div>
@@ -864,13 +826,6 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
   var baEl = document.getElementById('baTime');
   function tickBA(){ try{ if(baEl) baEl.textContent = new Intl.DateTimeFormat('es-AR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/Argentina/Buenos_Aires'}).format(new Date()); }catch(e){} }
   tickBA(); setInterval(tickBA, 30000);
-
-  /* hover del orb: acelera la respiración */
-  var orbWrap = document.getElementById('orbWrap');
-  if(orbWrap){
-    orbWrap.addEventListener('pointerenter', function(){ orbWrap.classList.add('excited'); });
-    orbWrap.addEventListener('pointerleave', function(){ orbWrap.classList.remove('excited'); });
-  }
 
   /* la voz del organismo: typewriter */
   var SAYS = ['despierto desde 2024','aprendiendo tu rubro…','ia · datos · seguridad','sin humo. con logs.','hecho en buenos aires','3 SaaS en producción'];
