@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ynera — Prototipo de IA</title>
+<meta name="description" content="Prototipo SVG de una historia de automatización con IA para Ynera.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#081826;
+    --ink:#EDE6D3;
+    --ink-56:rgba(237,230,211,.56);
+    --ink-14:rgba(237,230,211,.14);
+    --aqua:#6BCBCF;
+    --coral:#FF6A48;
+    --coral-dim:rgba(255,106,72,.18);
+    --serif:'IBM Plex Serif',Georgia,serif;
+    --sans:'IBM Plex Sans',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --ai-duration:7s;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{min-height:100%;background:var(--deep)}
+  body{min-height:100svh;background:var(--deep);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:2px solid var(--coral);outline-offset:4px}
+
+  .prototype-shell{width:min(100%,1040px);min-height:100svh;margin:0 auto;padding:32px 26px 48px;display:flex;flex-direction:column;justify-content:center}
+  .prototype-meta{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-56)}
+  .prototype-meta span:first-child{display:inline-flex;align-items:center;gap:10px}
+  .prototype-meta span:first-child::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--coral-dim)}
+  .prototype-title{max-width:680px;font-family:var(--serif);font-size:clamp(34px,5vw,62px);font-weight:500;line-height:1.04;letter-spacing:-.025em}
+  .prototype-title em{font-style:italic;color:var(--coral)}
+  .prototype-deck{max-width:56ch;margin-top:17px;color:var(--ink-56);font-size:17px;line-height:1.65}
+  .prototype-stage{position:relative;margin-top:42px;padding:20px 0;border-top:1px solid var(--ink-14);border-bottom:1px solid var(--ink-14)}
+  .prototype-stage::before,.prototype-stage::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--coral-dim)}
+  .prototype-stage::before{left:-3px;top:-4px}
+  .prototype-stage::after{right:-3px;bottom:-4px}
+  .ai-scene{display:block;width:min(100%,760px);height:auto;margin:0 auto;overflow:visible;pointer-events:none}
+  .prototype-caption{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:15px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-56)}
+  .prototype-caption b{color:var(--aqua);font-weight:400}
+
+  /* Todo queda scopeado para trasladar la escena después al hero sin colisiones. */
+  [data-ai-story] .ai-scene__guide{fill:none;stroke:rgba(237,230,211,.12);stroke-width:1;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__guide--aqua{stroke:rgba(107,203,207,.34);stroke-width:1.2}
+  [data-ai-story] .ai-scene__dot{fill:var(--aqua)}
+  [data-ai-story] .ai-scene__label{font-family:var(--mono);font-size:13px;letter-spacing:.11em;fill:var(--aqua)}
+  [data-ai-story] .ai-scene__desk{fill:none;stroke:rgba(237,230,211,.54);stroke-width:1.4;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__monitor{fill:var(--deep);stroke:var(--aqua);stroke-width:2.2;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__monitor-depth{fill:rgba(107,203,207,.04);stroke:rgba(107,203,207,.56);stroke-width:1.6;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__screen{fill:rgba(107,203,207,.035);stroke:rgba(107,203,207,.25);stroke-width:1.1;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__keyboard{fill:none;stroke:rgba(237,230,211,.66);stroke-width:1.5;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__person{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__person-head{fill:var(--ink);stroke:var(--deep);stroke-width:1.6;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__person-pose{opacity:0;transform-box:fill-box;transform-origin:center bottom}
+  [data-ai-story] .ai-scene__person-pose--observe{animation:ai-observe var(--ai-duration) ease-in-out infinite}
+  [data-ai-story] .ai-scene__person-pose--code{animation:ai-code var(--ai-duration) ease-in-out infinite}
+  [data-ai-story] .ai-scene__person-pose--resolve{animation:ai-resolve var(--ai-duration) ease-in-out infinite}
+  [data-ai-story] .ai-scene__problem{opacity:0;animation:ai-problem var(--ai-duration) linear infinite}
+  [data-ai-story] .ai-scene__problem-bar{fill:var(--coral)}
+  [data-ai-story] .ai-scene__problem-wall{fill:none;stroke:var(--coral);stroke-width:2.4;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__state-label{font-family:var(--mono);font-size:13px;letter-spacing:.08em;fill:var(--ink)}
+  [data-ai-story] .ai-scene__code{opacity:0;animation:ai-code-screen var(--ai-duration) linear infinite}
+  [data-ai-story] .ai-scene__code-symbol{font-family:var(--mono);font-size:23px;fill:var(--aqua)}
+  [data-ai-story] .ai-scene__code-line{fill:none;stroke:var(--aqua);stroke-width:2.05;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__code-line--dim{stroke:rgba(107,203,207,.48)}
+  [data-ai-story] .ai-scene__solution{opacity:0;animation:ai-solution var(--ai-duration) linear infinite}
+  [data-ai-story] .ai-scene__solution-track{fill:none;stroke:rgba(107,203,207,.38);stroke-width:1.5;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__solution-bar{fill:var(--aqua);transform-box:fill-box;transform-origin:left center}
+  [data-ai-story] .ai-scene__solution-bar--a{animation:ai-flow-a var(--ai-duration) ease-in-out infinite}
+  [data-ai-story] .ai-scene__solution-bar--b{animation:ai-flow-b var(--ai-duration) ease-in-out infinite}
+  [data-ai-story] .ai-scene__solution-bar--c{animation:ai-flow-c var(--ai-duration) ease-in-out infinite}
+  [data-ai-story] .ai-scene__solution-result{fill:none;stroke:var(--aqua);stroke-width:2.15;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  [data-ai-story] .ai-scene__settled{opacity:0;animation:ai-settled var(--ai-duration) linear infinite}
+
+  @keyframes ai-observe{0%,17%{opacity:1;transform:translate(0,0)}22%,100%{opacity:0;transform:translate(-2px,0)}}
+  @keyframes ai-code{0%,18%{opacity:0;transform:translate(-5px,0)}23%,54%{opacity:1;transform:translate(0,0)}59%,100%{opacity:0;transform:translate(4px,0)}}
+  @keyframes ai-resolve{0%,55%{opacity:0;transform:translate(-3px,0)}60%,87%{opacity:1;transform:translate(0,0)}92%,100%{opacity:0;transform:translate(3px,0)}}
+  @keyframes ai-problem{0%,20%{opacity:1}25%,100%{opacity:0}}
+  @keyframes ai-code-screen{0%,22%{opacity:0}27%,52%{opacity:1}57%,100%{opacity:0}}
+  @keyframes ai-solution{0%,53%{opacity:0}58%,87%{opacity:1}92%,100%{opacity:0}}
+  @keyframes ai-flow-a{0%,58%{transform:translateX(0)}68%,87%{transform:translateX(55px)}92%,100%{transform:translateX(55px)}}
+  @keyframes ai-flow-b{0%,61%{transform:translateX(0)}72%,87%{transform:translateX(55px)}92%,100%{transform:translateX(55px)}}
+  @keyframes ai-flow-c{0%,64%{transform:translateX(0)}76%,87%{transform:translateX(55px)}92%,100%{transform:translateX(55px)}}
+  @keyframes ai-settled{0%,72%{opacity:0}77%,87%{opacity:1}96%,100%{opacity:0}}
+
+  @media (prefers-reduced-motion:reduce){
+    [data-ai-story] *,[data-ai-story] *::before,[data-ai-story] *::after{animation:none!important;transition:none!important}
+    [data-ai-story] .ai-scene__person-pose,[data-ai-story] .ai-scene__problem,[data-ai-story] .ai-scene__code{display:none}
+    [data-ai-story] .ai-scene__person-pose--resolve,[data-ai-story] .ai-scene__solution,[data-ai-story] .ai-scene__settled{display:inline;opacity:1}
+    [data-ai-story] .ai-scene__solution-bar{transform:translateX(55px)}
+  }
+
+  @media (max-width:620px){
+    .prototype-shell{padding:24px 18px 34px}
+    .prototype-meta{align-items:flex-start;line-height:1.5}
+    .prototype-meta span:last-child{display:none}
+    .prototype-title{font-size:42px}
+    .prototype-deck{font-size:16px}
+    .prototype-stage{margin-top:30px;padding:12px 0}
+    .prototype-caption{display:block;line-height:1.75}
+    .prototype-caption span{display:block}
+  }
+</style>
+</head>
+<body>
+<main class="prototype-shell">
+  <header>
+    <p class="prototype-meta"><span>Ynera / laboratorio visual</span><span>Prototipo aislado · loop 07 s</span></p>
+    <h1 class="prototype-title">Mirar. Programar. <em>Destrabar.</em></h1>
+    <p class="prototype-deck">La IA no es un adorno: toma un trabajo que frena la operación, lo convierte en una rutina y lo deja corriendo.</p>
+  </header>
+
+  <section class="prototype-stage" data-ai-story aria-label="Escena animada de inteligencia artificial">
+    <svg class="ai-scene" viewBox="0 0 540 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="aiSceneTitle aiSceneDesc" xmlns="http://www.w3.org/2000/svg">
+      <title id="aiSceneTitle">Un problema operativo que se convierte en una rutina automatizada</title>
+      <desc id="aiSceneDesc">Una persona observa una cola de trabajo trabada en su monitor, escribe una rutina y las tareas empiezan a circular ordenadamente.</desc>
+
+      <g aria-hidden="true">
+        <line class="ai-scene__guide" x1="64" y1="74" x2="64" y2="298"/>
+        <line class="ai-scene__guide" x1="64" y1="282" x2="478" y2="282"/>
+        <line class="ai-scene__guide ai-scene__guide--aqua" x1="64" y1="88" x2="184" y2="88"/>
+        <circle class="ai-scene__dot" cx="64" cy="88" r="3.5"/>
+        <text class="ai-scene__label" x="75" y="108">AUTOMATIZACIÓN</text>
+
+        <g class="ai-scene__desk">
+          <line x1="91" y1="253" x2="449" y2="253"/>
+          <line x1="120" y1="253" x2="106" y2="282"/><line x1="419" y1="253" x2="432" y2="282"/>
+        </g>
+
+        <g class="ai-scene__workstation">
+          <rect class="ai-scene__monitor" x="216" y="106" width="164" height="112" rx="1"/>
+          <path class="ai-scene__monitor-depth" d="M380 106 L392 117 L392 228 L380 218 Z"/>
+          <rect class="ai-scene__screen" x="229" y="119" width="138" height="87" rx="1"/>
+          <path class="ai-scene__desk" d="M282 218V238M253 238H312"/>
+          <path class="ai-scene__keyboard" d="M212 244 H367 L393 253 H203 Z"/>
+          <line class="ai-scene__keyboard" x1="220" y1="249" x2="374" y2="249" opacity=".45"/>
+
+          <g class="ai-scene__problem">
+            <text class="ai-scene__state-label" x="243" y="140">COLA</text>
+            <rect class="ai-scene__problem-bar" x="243" y="151" width="58" height="9" rx="2"/>
+            <rect class="ai-scene__problem-bar" x="243" y="166" width="74" height="9" rx="2" opacity=".8"/>
+            <rect class="ai-scene__problem-bar" x="243" y="181" width="48" height="9" rx="2" opacity=".62"/>
+            <path class="ai-scene__problem-wall" d="M328 148 V192 M320 154 L328 148 L336 154 M320 186 L328 192 L336 186"/>
+          </g>
+
+          <g class="ai-scene__code">
+            <text class="ai-scene__code-symbol" x="242" y="148">&gt;_</text>
+            <line class="ai-scene__code-line" x1="276" y1="141" x2="338" y2="141"/>
+            <line class="ai-scene__code-line ai-scene__code-line--dim" x1="258" y1="157" x2="347" y2="157"/>
+            <line class="ai-scene__code-line" x1="258" y1="173" x2="317" y2="173"/>
+            <line class="ai-scene__code-line ai-scene__code-line--dim" x1="258" y1="189" x2="333" y2="189"/>
+          </g>
+
+          <g class="ai-scene__solution">
+            <path class="ai-scene__solution-track" d="M244 149 H349 M244 169 H349 M244 189 H349"/>
+            <rect class="ai-scene__solution-bar ai-scene__solution-bar--a" x="244" y="144" width="23" height="10" rx="2"/>
+            <rect class="ai-scene__solution-bar ai-scene__solution-bar--b" x="244" y="164" width="23" height="10" rx="2"/>
+            <rect class="ai-scene__solution-bar ai-scene__solution-bar--c" x="244" y="184" width="23" height="10" rx="2"/>
+            <path class="ai-scene__solution-result" d="M329 147 L335 153 L348 139 M329 167 L335 173 L348 159 M329 187 L335 193 L348 179"/>
+          </g>
+        </g>
+
+        <g transform="translate(86 121)">
+          <g class="ai-scene__person-pose ai-scene__person-pose--observe">
+            <circle class="ai-scene__person-head" cx="49" cy="20" r="13"/>
+            <path class="ai-scene__person" d="M46 34 L49 82 M48 50 L67 39 M48 51 L78 77 M49 82 L27 122 M49 82 L72 119"/>
+          </g>
+          <g class="ai-scene__person-pose ai-scene__person-pose--code">
+            <circle class="ai-scene__person-head" cx="54" cy="20" r="13"/>
+            <path class="ai-scene__person" d="M50 34 L63 82 M56 50 L84 70 M56 50 C84 65 104 81 129 91 M63 82 L43 122 M63 82 L87 116"/>
+          </g>
+          <g class="ai-scene__person-pose ai-scene__person-pose--resolve">
+            <circle class="ai-scene__person-head" cx="48" cy="20" r="13"/>
+            <path class="ai-scene__person" d="M45 34 L49 82 M48 51 L78 74 M48 51 L72 40 M49 82 L27 122 M49 82 L73 119"/>
+          </g>
+        </g>
+
+        <g class="ai-scene__settled">
+          <circle class="ai-scene__dot" cx="216" cy="274" r="3.5"/>
+          <line class="ai-scene__guide ai-scene__guide--aqua" x1="230" y1="274" x2="392" y2="274"/>
+        </g>
+      </g>
+    </svg>
+  </section>
+
+  <p class="prototype-caption"><span><b>Módulo 03/03:</b> IA</span><span>sin dependencias · listo para convivir con Datos y Seguridad</span></p>
+</main>
+</body>
+</html>

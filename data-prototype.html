@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ynera — Prototipo de datos</title>
+<meta name="description" content="Prototipo SVG de una historia de datos operables para Ynera.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#081826;
+    --ink:#EDE6D3;
+    --ink-56:rgba(237,230,211,.56);
+    --ink-14:rgba(237,230,211,.14);
+    --aqua:#6BCBCF;
+    --coral:#FF6A48;
+    --coral-dim:rgba(255,106,72,.18);
+    --serif:'IBM Plex Serif',Georgia,serif;
+    --sans:'IBM Plex Sans',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --data-duration:7s;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{min-height:100%;background:var(--deep)}
+  body{min-height:100svh;background:var(--deep);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  :focus-visible{outline:2px solid var(--coral);outline-offset:4px}
+
+  .prototype-shell{width:min(100%,1040px);min-height:100svh;margin:0 auto;padding:32px 26px 48px;display:flex;flex-direction:column;justify-content:center}
+  .prototype-meta{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-56)}
+  .prototype-meta span:first-child{display:inline-flex;align-items:center;gap:10px}
+  .prototype-meta span:first-child::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--coral-dim)}
+  .prototype-title{max-width:650px;font-family:var(--serif);font-size:clamp(34px,5vw,62px);font-weight:500;line-height:1.04;letter-spacing:-.025em}
+  .prototype-title em{font-style:italic;color:var(--aqua)}
+  .prototype-deck{max-width:55ch;margin-top:17px;color:var(--ink-56);font-size:17px;line-height:1.65}
+  .prototype-stage{position:relative;margin-top:42px;padding:20px 0;border-top:1px solid var(--ink-14);border-bottom:1px solid var(--ink-14)}
+  .prototype-stage::before,.prototype-stage::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px var(--coral-dim)}
+  .prototype-stage::before{left:-3px;top:-4px}
+  .prototype-stage::after{right:-3px;bottom:-4px}
+  .data-scene{display:block;width:min(100%,760px);height:auto;margin:0 auto;overflow:visible;pointer-events:none}
+  .prototype-caption{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:15px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-56)}
+  .prototype-caption b{color:var(--aqua);font-weight:400}
+
+  /* Todo queda scopeado para trasladar la escena después al hero sin colisiones. */
+  [data-data-story] .data-scene__guide{fill:none;stroke:rgba(237,230,211,.12);stroke-width:1;vector-effect:non-scaling-stroke}
+  [data-data-story] .data-scene__guide--aqua{stroke:rgba(107,203,207,.34);stroke-width:1.2}
+  [data-data-story] .data-scene__dot{fill:var(--aqua)}
+  [data-data-story] .data-scene__label{font-family:var(--mono);font-size:13px;letter-spacing:.11em;fill:var(--aqua)}
+  [data-data-story] .data-scene__source{opacity:0;transform-box:fill-box;transform-origin:center;will-change:transform,opacity}
+  [data-data-story] .data-scene__source--a{animation:data-source-a var(--data-duration) cubic-bezier(.28,.06,.2,1) infinite}
+  [data-data-story] .data-scene__source--b{animation:data-source-b var(--data-duration) cubic-bezier(.28,.06,.2,1) infinite}
+  [data-data-story] .data-scene__source--c{animation:data-source-c var(--data-duration) cubic-bezier(.28,.06,.2,1) infinite}
+  [data-data-story] .data-scene__source-frame{fill:rgba(237,230,211,.02);stroke:rgba(237,230,211,.72);stroke-width:1.9;vector-effect:non-scaling-stroke}
+  [data-data-story] .data-scene__source-frame--aqua{stroke:var(--aqua)}
+  [data-data-story] .data-scene__source-header{fill:rgba(107,203,207,.13)}
+  [data-data-story] .data-scene__source-line{fill:none;stroke:rgba(237,230,211,.58);stroke-width:1.35;vector-effect:non-scaling-stroke}
+  [data-data-story] .data-scene__source-line--aqua{stroke:var(--aqua)}
+  [data-data-story] .data-scene__route{fill:none;stroke:rgba(107,203,207,.25);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:3 6;vector-effect:non-scaling-stroke}
+  [data-data-story] .data-scene__merge{opacity:0;animation:data-merge var(--data-duration) ease-out infinite}
+  [data-data-story] .data-scene__merge-line{fill:none;stroke:var(--aqua);stroke-width:2.2;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  [data-data-story] .data-scene__merge-dot{fill:var(--aqua)}
+  [data-data-story] .data-scene__table{opacity:0;transform-box:fill-box;transform-origin:left center;animation:data-table var(--data-duration) ease-out infinite}
+  [data-data-story] .data-scene__table-frame{fill:rgba(107,203,207,.035);stroke:var(--aqua);stroke-width:2.15;vector-effect:non-scaling-stroke}
+  [data-data-story] .data-scene__table-rule{fill:none;stroke:rgba(237,230,211,.52);stroke-width:1.35;vector-effect:non-scaling-stroke}
+  [data-data-story] .data-scene__table-head{fill:rgba(107,203,207,.13)}
+  [data-data-story] .data-scene__table-label{font-family:var(--mono);font-size:12px;letter-spacing:.04em;fill:var(--ink)}
+  [data-data-story] .data-scene__table-row{opacity:0;transform-box:fill-box;transform-origin:left center}
+  [data-data-story] .data-scene__table-row--a{animation:data-row-a var(--data-duration) ease-out infinite}
+  [data-data-story] .data-scene__table-row--b{animation:data-row-b var(--data-duration) ease-out infinite}
+  [data-data-story] .data-scene__table-row--c{animation:data-row-c var(--data-duration) ease-out infinite}
+  [data-data-story] .data-scene__table-row-fill{fill:rgba(107,203,207,.12)}
+  [data-data-story] .data-scene__table-row-mark{fill:var(--aqua)}
+  [data-data-story] .data-scene__table-row-line{fill:none;stroke:rgba(237,230,211,.7);stroke-width:1.65;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  [data-data-story] .data-scene__settled{opacity:0;animation:data-settled var(--data-duration) linear infinite}
+
+  @keyframes data-source-a{
+    0%,13%{opacity:1;transform:translate(0,0)}
+    32%{opacity:1;transform:translate(152px,26px)}
+    40%,91%{opacity:0;transform:translate(177px,26px)}
+    100%{opacity:1;transform:translate(0,0)}
+  }
+  @keyframes data-source-b{
+    0%,18%{opacity:1;transform:translate(0,0)}
+    38%{opacity:1;transform:translate(137px,0)}
+    46%,91%{opacity:0;transform:translate(162px,0)}
+    100%{opacity:1;transform:translate(0,0)}
+  }
+  @keyframes data-source-c{
+    0%,23%{opacity:1;transform:translate(0,0)}
+    44%{opacity:1;transform:translate(177px,-26px)}
+    52%,91%{opacity:0;transform:translate(202px,-26px)}
+    100%{opacity:1;transform:translate(0,0)}
+  }
+  @keyframes data-merge{0%,25%{opacity:0}31%,82%{opacity:1}91%,100%{opacity:0}}
+  @keyframes data-table{0%,34%{opacity:0;transform:scaleX(.7)}42%,87%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.86)}}
+  @keyframes data-row-a{0%,42%{opacity:0;transform:scaleX(.3)}48%,87%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.8)}}
+  @keyframes data-row-b{0%,49%{opacity:0;transform:scaleX(.3)}55%,87%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.8)}}
+  @keyframes data-row-c{0%,56%{opacity:0;transform:scaleX(.3)}62%,87%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.8)}}
+  @keyframes data-settled{0%,63%{opacity:0}68%,87%{opacity:1}96%,100%{opacity:0}}
+
+  @media (prefers-reduced-motion:reduce){
+    [data-data-story] *,[data-data-story] *::before,[data-data-story] *::after{animation:none!important;transition:none!important}
+    [data-data-story] .data-scene__source,[data-data-story] .data-scene__route{display:none}
+    [data-data-story] .data-scene__merge,[data-data-story] .data-scene__table,[data-data-story] .data-scene__table-row,[data-data-story] .data-scene__settled{opacity:1}
+    [data-data-story] .data-scene__table,[data-data-story] .data-scene__table-row{transform:scaleX(1)}
+  }
+
+  @media (max-width:620px){
+    .prototype-shell{padding:24px 18px 34px}
+    .prototype-meta{align-items:flex-start;line-height:1.5}
+    .prototype-meta span:last-child{display:none}
+    .prototype-title{font-size:42px}
+    .prototype-deck{font-size:16px}
+    .prototype-stage{margin-top:30px;padding:12px 0}
+    .prototype-caption{display:block;line-height:1.75}
+    .prototype-caption span{display:block}
+  }
+</style>
+</head>
+<body>
+<main class="prototype-shell">
+  <header>
+    <p class="prototype-meta"><span>Ynera / laboratorio visual</span><span>Prototipo aislado · loop 07 s</span></p>
+    <h1 class="prototype-title">Tres sistemas. <em>Un dato útil.</em></h1>
+    <p class="prototype-deck">La escena muestra algo concreto: fuentes separadas entran por una misma vía y terminan como una única tabla operativa.</p>
+  </header>
+
+  <section class="prototype-stage" data-data-story aria-label="Escena animada de datos">
+    <svg class="data-scene" viewBox="0 0 540 360" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="dataSceneTitle dataSceneDesc" xmlns="http://www.w3.org/2000/svg">
+      <title id="dataSceneTitle">Tres fuentes que se convierten en una tabla operativa</title>
+      <desc id="dataSceneDesc">Tres pequeñas tablas de sistemas independientes se acercan por rutas visibles, se combinan y se convierten en una tabla única, ordenada y lista para usar.</desc>
+
+      <g aria-hidden="true">
+        <line class="data-scene__guide" x1="64" y1="74" x2="64" y2="298"/>
+        <line class="data-scene__guide" x1="64" y1="282" x2="478" y2="282"/>
+        <line class="data-scene__guide data-scene__guide--aqua" x1="64" y1="88" x2="184" y2="88"/>
+        <circle class="data-scene__dot" cx="64" cy="88" r="3.5"/>
+        <text class="data-scene__label" x="75" y="108">FUENTES</text>
+        <text class="data-scene__label" x="326" y="96">REGISTRO ÚNICO</text>
+
+        <path class="data-scene__route" d="M184 142 H252"/>
+        <path class="data-scene__route" d="M195 197 H252"/>
+        <path class="data-scene__route" d="M188 248 H252"/>
+
+        <g transform="translate(75 121)">
+          <g class="data-scene__source data-scene__source--a">
+            <rect class="data-scene__source-frame data-scene__source-frame--aqua" width="109" height="39" rx="1"/>
+            <rect class="data-scene__source-header" x="1" y="1" width="107" height="9"/>
+            <line class="data-scene__source-line data-scene__source-line--aqua" x1="13" y1="20" x2="48" y2="20"/>
+            <line class="data-scene__source-line" x1="60" y1="20" x2="94" y2="20"/>
+            <line class="data-scene__source-line" x1="13" y1="30" x2="43" y2="30"/>
+            <line class="data-scene__source-line" x1="60" y1="30" x2="82" y2="30"/>
+          </g>
+        </g>
+
+        <g transform="translate(101 177)">
+          <g class="data-scene__source data-scene__source--b">
+            <rect class="data-scene__source-frame" width="94" height="40" rx="1"/>
+            <rect class="data-scene__source-header" x="1" y="1" width="92" height="9"/>
+            <line class="data-scene__source-line" x1="12" y1="20" x2="41" y2="20"/>
+            <line class="data-scene__source-line data-scene__source-line--aqua" x1="53" y1="20" x2="79" y2="20"/>
+            <line class="data-scene__source-line" x1="12" y1="30" x2="34" y2="30"/>
+            <line class="data-scene__source-line" x1="53" y1="30" x2="82" y2="30"/>
+          </g>
+        </g>
+
+        <g transform="translate(61 228)">
+          <g class="data-scene__source data-scene__source--c">
+            <rect class="data-scene__source-frame" width="127" height="39" rx="1"/>
+            <rect class="data-scene__source-header" x="1" y="1" width="125" height="9"/>
+            <line class="data-scene__source-line" x1="13" y1="20" x2="58" y2="20"/>
+            <line class="data-scene__source-line" x1="70" y1="20" x2="112" y2="20"/>
+            <line class="data-scene__source-line data-scene__source-line--aqua" x1="13" y1="30" x2="45" y2="30"/>
+            <line class="data-scene__source-line" x1="70" y1="30" x2="101" y2="30"/>
+          </g>
+        </g>
+
+        <g class="data-scene__merge">
+          <path class="data-scene__merge-line" d="M260 128 V237"/>
+          <path class="data-scene__merge-line" d="M260 128 L282 149 V216 L260 237" opacity=".55"/>
+          <circle class="data-scene__merge-dot" cx="271" cy="182" r="4.5"/>
+          <line class="data-scene__merge-line" x1="282" y1="182" x2="316" y2="182"/>
+        </g>
+
+        <g class="data-scene__table">
+          <rect class="data-scene__table-frame" x="326" y="108" width="158" height="151" rx="1"/>
+          <rect class="data-scene__table-head" x="328" y="110" width="154" height="28"/>
+          <line class="data-scene__table-rule" x1="326" y1="138" x2="484" y2="138"/>
+          <line class="data-scene__table-rule" x1="365" y1="108" x2="365" y2="259"/>
+          <line class="data-scene__table-rule" x1="424" y1="108" x2="424" y2="259"/>
+          <text class="data-scene__table-label" x="337" y="128">ID</text>
+          <text class="data-scene__table-label" x="375" y="128">DÍA</text>
+          <text class="data-scene__table-label" x="434" y="128">EST.</text>
+
+          <g class="data-scene__table-row data-scene__table-row--a">
+            <rect class="data-scene__table-row-fill" x="328" y="140" width="154" height="38"/>
+            <circle class="data-scene__table-row-mark" cx="345" cy="159" r="4"/>
+            <line class="data-scene__table-row-line" x1="375" y1="159" x2="407" y2="159"/>
+            <line class="data-scene__table-row-line" x1="435" y1="159" x2="469" y2="159"/>
+          </g>
+          <g class="data-scene__table-row data-scene__table-row--b">
+            <rect class="data-scene__table-row-fill" x="328" y="180" width="154" height="38"/>
+            <circle class="data-scene__table-row-mark" cx="345" cy="199" r="4"/>
+            <line class="data-scene__table-row-line" x1="375" y1="199" x2="407" y2="199"/>
+            <line class="data-scene__table-row-line" x1="435" y1="199" x2="469" y2="199"/>
+          </g>
+          <g class="data-scene__table-row data-scene__table-row--c">
+            <rect class="data-scene__table-row-fill" x="328" y="220" width="154" height="37"/>
+            <circle class="data-scene__table-row-mark" cx="345" cy="238" r="4"/>
+            <line class="data-scene__table-row-line" x1="375" y1="238" x2="407" y2="238"/>
+            <line class="data-scene__table-row-line" x1="435" y1="238" x2="469" y2="238"/>
+          </g>
+        </g>
+
+        <g class="data-scene__settled">
+          <circle class="data-scene__dot" cx="326" cy="274" r="3.5"/>
+          <line class="data-scene__guide data-scene__guide--aqua" x1="340" y1="274" x2="484" y2="274"/>
+        </g>
+      </g>
+    </svg>
+  </section>
+
+  <p class="prototype-caption"><span><b>Módulo 01/03:</b> Datos</span><span>sin dependencias · listo para convivir con Seguridad e IA</span></p>
+</main>
+</body>
+</html>

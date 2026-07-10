@@ -148,40 +148,109 @@ nav#nav.scrolled{background:rgba(8,24,38,.94);border-color:var(--ink-12)}
 .hero-mail{color:var(--aqua);text-decoration:underline;text-underline-offset:3px}
 .hero-mail:hover{color:var(--coral)}
 
-/* ── PROTOCOLO EDITORIAL ── */
-.hero-protocol{position:relative;z-index:1;width:min(660px,53vw);aspect-ratio:3 / 2;justify-self:start;margin-left:-12%;pointer-events:none}
-.hero-protocol::before{content:"";position:absolute;inset:14% -4%;background:linear-gradient(90deg,transparent,rgba(107,203,207,.06) 42%,rgba(255,106,72,.05) 64%,transparent);filter:blur(14px);z-index:-1}
-.protocol-svg{display:block;width:100%;height:auto;overflow:visible}
-.protocol-svg .protocol-grid{stroke:rgba(237,230,211,.1);stroke-width:1;vector-effect:non-scaling-stroke}
-.protocol-svg .protocol-grid--accent{stroke:rgba(107,203,207,.22)}
-.protocol-svg .protocol-stream{fill:none;stroke-width:1.4;stroke-dasharray:4 9;vector-effect:non-scaling-stroke;animation:protocolFlow 7s linear infinite}
-.protocol-svg .protocol-stream--data{stroke:var(--aqua)}
-.protocol-svg .protocol-stream--security{stroke:rgba(237,230,211,.78);animation-delay:-2.3s}
-.protocol-svg .protocol-stream--ai{stroke:var(--coral);animation-delay:-4.6s}
-.protocol-svg .protocol-index{font-family:var(--mono);font-size:9px;letter-spacing:.14em}
-.protocol-svg .protocol-label{font-family:var(--mono);font-size:18px;font-weight:600;letter-spacing:.08em}
-.protocol-svg .protocol-label--data,.protocol-svg .protocol-index--data{fill:var(--aqua)}
-.protocol-svg .protocol-label--security,.protocol-svg .protocol-index--security{fill:var(--ink)}
-.protocol-svg .protocol-label--ai,.protocol-svg .protocol-index--ai{fill:var(--coral)}
-.protocol-svg .protocol-verb{font-family:var(--serif);font-size:15px;font-style:italic;fill:rgba(237,230,211,.58)}
-.protocol-svg .protocol-node{fill:var(--deep);stroke-width:1.2;vector-effect:non-scaling-stroke}
-.protocol-svg .protocol-node--data{stroke:var(--aqua)}
-.protocol-svg .protocol-node--security{stroke:rgba(237,230,211,.72)}
-.protocol-svg .protocol-node--ai{stroke:var(--coral)}
-.protocol-svg .protocol-output{fill:none;stroke-width:1.2;vector-effect:non-scaling-stroke}
-.protocol-svg .protocol-output--data{stroke:var(--aqua)}
-.protocol-svg .protocol-output--security{stroke:rgba(237,230,211,.72)}
-.protocol-svg .protocol-output--ai{stroke:var(--coral)}
-.protocol-svg .protocol-output-label{font-family:var(--mono);font-size:8px;letter-spacing:.1em}
-.protocol-svg .protocol-output-label--data{fill:var(--aqua)}
-.protocol-svg .protocol-output-label--security{fill:var(--ink)}
-.protocol-svg .protocol-output-label--ai{fill:var(--coral)}
-.protocol-svg .protocol-integration{fill:none;stroke:rgba(255,106,72,.46);stroke-width:1;stroke-dasharray:2 5;vector-effect:non-scaling-stroke;animation:protocolIntegration 5s linear infinite}
-.protocol-svg .protocol-integration-label{font-family:var(--mono);font-size:8px;letter-spacing:.1em;fill:rgba(237,230,211,.48)}
-.protocol-svg .protocol-caption{font-family:var(--mono);font-size:9px;letter-spacing:.16em;fill:var(--aqua)}
-.protocol-svg .protocol-annotation{font-family:var(--serif);font-size:16px;font-style:italic;fill:rgba(237,230,211,.7)}
-@keyframes protocolFlow{to{stroke-dashoffset:-91}}
-@keyframes protocolIntegration{to{stroke-dashoffset:-35}}
+/* ── TRES ESCENAS OPERATIVAS ── */
+.hero-protocol{position:relative;z-index:1;width:min(660px,53vw);justify-self:start;margin-left:-12%;display:grid;gap:10px;padding:7px 0;pointer-events:none}
+.hero-protocol::before{content:"";position:absolute;inset:6% -5%;background:linear-gradient(90deg,transparent,rgba(107,203,207,.07) 42%,rgba(255,106,72,.05) 64%,transparent);filter:blur(14px);z-index:-1}
+.hero-story{display:block;width:100%;aspect-ratio:540 / 118;overflow:visible}
+.hero-story .story-guide{fill:none;stroke:rgba(237,230,211,.12);stroke-width:1;vector-effect:non-scaling-stroke}
+.hero-story .story-guide--aqua{stroke:rgba(107,203,207,.34);stroke-width:1.2}
+.hero-story .story-dot{fill:var(--aqua)}
+.hero-story .story-index{font-family:var(--mono);font-size:10px;letter-spacing:.13em;fill:var(--ink-45)}
+.hero-story .story-name{font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.1em}
+.hero-story .story-name--data{fill:var(--aqua)}
+.hero-story .story-name--security{fill:var(--ink)}
+.hero-story .story-name--ai{fill:var(--coral)}
+
+/* Datos: fuentes separadas → registro único */
+.hero-story .story-data-source{opacity:0;transform-box:fill-box;transform-origin:center;will-change:transform,opacity}
+.hero-story .story-data-source--a{animation:heroDataSourceA 7s cubic-bezier(.28,.06,.2,1) infinite}
+.hero-story .story-data-source--b{animation:heroDataSourceB 7s cubic-bezier(.28,.06,.2,1) infinite}
+.hero-story .story-data-source--c{animation:heroDataSourceC 7s cubic-bezier(.28,.06,.2,1) infinite}
+.hero-story .story-data-source-frame{fill:rgba(237,230,211,.025);stroke:rgba(237,230,211,.72);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.hero-story .story-data-source-frame--aqua{stroke:var(--aqua)}
+.hero-story .story-data-line{fill:none;stroke:rgba(237,230,211,.5);stroke-width:1.25;vector-effect:non-scaling-stroke}
+.hero-story .story-data-line--aqua{stroke:var(--aqua)}
+.hero-story .story-data-route{fill:none;stroke:rgba(107,203,207,.22);stroke-width:1.15;stroke-dasharray:3 5;vector-effect:non-scaling-stroke}
+.hero-story .story-data-merge{opacity:0;animation:heroDataMerge 7s ease-out infinite}
+.hero-story .story-data-merge-line{fill:none;stroke:var(--aqua);stroke-width:1.75;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.hero-story .story-data-table{opacity:0;transform-box:fill-box;transform-origin:left center;animation:heroDataTable 7s ease-out infinite}
+.hero-story .story-data-table-frame{fill:rgba(107,203,207,.035);stroke:var(--aqua);stroke-width:1.7;vector-effect:non-scaling-stroke}
+.hero-story .story-data-table-rule{fill:none;stroke:rgba(237,230,211,.44);stroke-width:1;vector-effect:non-scaling-stroke}
+.hero-story .story-data-table-head{fill:rgba(107,203,207,.13)}
+.hero-story .story-data-table-label{font-family:var(--mono);font-size:8px;letter-spacing:.04em;fill:var(--ink)}
+.hero-story .story-data-row{opacity:0;transform-box:fill-box;transform-origin:left center}
+.hero-story .story-data-row--a{animation:heroDataRowA 7s ease-out infinite}
+.hero-story .story-data-row--b{animation:heroDataRowB 7s ease-out infinite}
+.hero-story .story-data-row--c{animation:heroDataRowC 7s ease-out infinite}
+.hero-story .story-data-row-fill{fill:rgba(107,203,207,.12)}
+.hero-story .story-data-row-mark{fill:var(--aqua)}
+.hero-story .story-data-row-line{fill:none;stroke:rgba(237,230,211,.7);stroke-width:1.25;stroke-linecap:round;vector-effect:non-scaling-stroke}
+@keyframes heroDataSourceA{0%,13%{opacity:1;transform:translate(0,0)}32%{opacity:1;transform:translate(120px,16px)}40%,91%{opacity:0;transform:translate(139px,16px)}100%{opacity:1;transform:translate(0,0)}}
+@keyframes heroDataSourceB{0%,18%{opacity:1;transform:translate(0,0)}38%{opacity:1;transform:translate(108px,0)}46%,91%{opacity:0;transform:translate(127px,0)}100%{opacity:1;transform:translate(0,0)}}
+@keyframes heroDataSourceC{0%,23%{opacity:1;transform:translate(0,0)}44%{opacity:1;transform:translate(138px,-16px)}52%,91%{opacity:0;transform:translate(157px,-16px)}100%{opacity:1;transform:translate(0,0)}}
+@keyframes heroDataMerge{0%,25%{opacity:0}31%,82%{opacity:1}91%,100%{opacity:0}}
+@keyframes heroDataTable{0%,34%{opacity:0;transform:scaleX(.7)}42%,87%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.86)}}
+@keyframes heroDataRowA{0%,42%{opacity:0;transform:scaleX(.3)}48%,87%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.8)}}
+@keyframes heroDataRowB{0%,49%{opacity:0;transform:scaleX(.3)}55%,87%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.8)}}
+@keyframes heroDataRowC{0%,56%{opacity:0;transform:scaleX(.3)}62%,87%{opacity:1;transform:scaleX(1)}96%,100%{opacity:0;transform:scaleX(.8)}}
+
+/* Seguridad: intento → bloqueo → huida */
+.hero-story .story-security-desk{fill:none;stroke:rgba(237,230,211,.5);stroke-width:1.15;vector-effect:non-scaling-stroke}
+.hero-story .story-security-monitor{fill:var(--deep);stroke:var(--aqua);stroke-width:1.8;vector-effect:non-scaling-stroke}
+.hero-story .story-security-screen{fill:rgba(107,203,207,.04);stroke:rgba(107,203,207,.25);stroke-width:1;vector-effect:non-scaling-stroke}
+.hero-story .story-security-keyboard{fill:none;stroke:rgba(237,230,211,.6);stroke-width:1.15;vector-effect:non-scaling-stroke}
+.hero-story .story-security-normal{animation:heroSecurityNormal 7s linear infinite}
+.hero-story .story-security-normal-line{fill:none;stroke:var(--aqua);stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.hero-story .story-security-alert{opacity:0;animation:heroSecurityAlert 7s linear infinite}
+.hero-story .story-security-alert-fill{fill:rgba(255,106,72,.28);stroke:var(--coral);stroke-width:1.8;vector-effect:non-scaling-stroke}
+.hero-story .story-security-alert-mark{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.hero-story .story-security-detect{opacity:0;fill:none;stroke:var(--coral);stroke-width:1.35;stroke-dasharray:3 5;vector-effect:non-scaling-stroke;transform-box:fill-box;transform-origin:center;animation:heroSecurityDetect 7s ease-out infinite}
+.hero-story .story-rig{opacity:0;will-change:opacity}
+.hero-story .story-rig-bone{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.hero-story .story-rig-bone--torso{stroke-width:3.4}
+.hero-story .story-rig-head{fill:var(--ink);stroke:var(--deep);stroke-width:.9;vector-effect:non-scaling-stroke}
+.hero-story .story-security-mask{fill:var(--deep);opacity:.96}
+.hero-story .story-security-speed{opacity:0;fill:none;stroke:var(--coral);stroke-width:2.4;stroke-linecap:round;vector-effect:non-scaling-stroke;will-change:opacity}
+.hero-story .story-security-trace{opacity:0;fill:none;stroke:var(--coral);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:13 8;vector-effect:non-scaling-stroke;animation:heroSecurityTrace 7s linear infinite}
+@keyframes heroSecurityNormal{0%,34%{opacity:1}38%,74%{opacity:0}78%,100%{opacity:1}}
+@keyframes heroSecurityAlert{0%,34%{opacity:0}38%,72%{opacity:1}76%,100%{opacity:0}}
+@keyframes heroSecurityDetect{0%,34%{opacity:0;transform:scale(.95)}38%{opacity:1;transform:scale(1)}72%{opacity:.78;transform:scale(1.04)}76%,100%{opacity:0;transform:scale(1.06)}}
+@keyframes heroSecurityTrace{0%,74%{opacity:0}78%,96%{opacity:1}100%{opacity:0}}
+
+/* IA: problema → rutina → flujo resuelto */
+.hero-story .story-ai-desk{fill:none;stroke:rgba(237,230,211,.52);stroke-width:1.15;vector-effect:non-scaling-stroke}
+.hero-story .story-ai-monitor{fill:var(--deep);stroke:var(--aqua);stroke-width:1.8;vector-effect:non-scaling-stroke}
+.hero-story .story-ai-screen{fill:rgba(107,203,207,.035);stroke:rgba(107,203,207,.24);stroke-width:1;vector-effect:non-scaling-stroke}
+.hero-story .story-ai-keyboard{fill:none;stroke:rgba(237,230,211,.62);stroke-width:1.1;vector-effect:non-scaling-stroke}
+.hero-story .story-ai-problem{opacity:0;animation:heroAiProblem 7s linear infinite}
+.hero-story .story-ai-problem-bar{fill:var(--coral)}
+.hero-story .story-ai-problem-wall{fill:none;stroke:var(--coral);stroke-width:2;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.hero-story .story-ai-code{opacity:0;animation:heroAiCodeScreen 7s linear infinite}
+.hero-story .story-ai-code-symbol{font-family:var(--mono);font-size:15px;fill:var(--aqua)}
+.hero-story .story-ai-code-line{fill:none;stroke:var(--aqua);stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.hero-story .story-ai-code-line--dim{stroke:rgba(107,203,207,.48)}
+.hero-story .story-ai-solution{opacity:0;animation:heroAiSolution 7s linear infinite}
+.hero-story .story-ai-track{fill:none;stroke:rgba(107,203,207,.38);stroke-width:1.1;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.hero-story .story-ai-flow{fill:var(--aqua);transform-box:fill-box;transform-origin:left center}
+.hero-story .story-ai-flow--a{animation:heroAiFlowA 7s ease-in-out infinite}
+.hero-story .story-ai-flow--b{animation:heroAiFlowB 7s ease-in-out infinite}
+.hero-story .story-ai-flow--c{animation:heroAiFlowC 7s ease-in-out infinite}
+.hero-story .story-ai-result{fill:none;stroke:var(--aqua);stroke-width:1.7;stroke-linecap:round;vector-effect:non-scaling-stroke}
+@keyframes heroAiProblem{0%,16%{opacity:1}21%,100%{opacity:0}}
+@keyframes heroAiCodeScreen{0%,20%{opacity:0}24%,57%{opacity:1}61%,100%{opacity:0}}
+@keyframes heroAiSolution{0%,57%{opacity:0}61%,96%{opacity:1}100%{opacity:0}}
+@keyframes heroAiFlowA{0%,61%{transform:translateX(0)}70%,96%{transform:translateX(41px)}100%{transform:translateX(0)}}
+@keyframes heroAiFlowB{0%,64%{transform:translateX(0)}74%,96%{transform:translateX(41px)}100%{transform:translateX(0)}}
+@keyframes heroAiFlowC{0%,67%{transform:translateX(0)}78%,96%{transform:translateX(41px)}100%{transform:translateX(0)}}
+
+/* El hero es un índice compacto: una acción legible por fila, sin microposes que compitan. */
+.hero-protocol{gap:0;padding:0;border-top:1px solid var(--ink-12);border-bottom:1px solid var(--ink-12)}
+.hero-story{aspect-ratio:540 / 108}
+.hero-story+.hero-story{border-top:1px solid var(--ink-12)}
+
+/* Datos conserva su relato completo: fuentes → carril → registro. */
+
+/* Los personajes articulados se dibujan desde una única línea temporal en JS. */
 
 @media(max-width:920px){
   .hero{padding:104px 0 70px}
@@ -340,6 +409,8 @@ footer{border-top:1px solid var(--ink-12);padding:42px 0;font-size:14px;color:va
 /* pausa animaciones fuera de viewport */
 .anim-paused,.anim-paused *,.anim-paused::after,.anim-paused *::after{animation-play-state:paused!important}
 body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play-state:paused!important}
+/* El hero se mantiene vivo: es la única animación visible durante la navegación inicial. */
+body.scrolling .hero-protocol,body.scrolling .hero-protocol *,body.scrolling .hero-protocol *::before,body.scrolling .hero-protocol *::after{animation-play-state:running!important}
 
 @media(max-width:900px){
   .nerve::after{animation:none}
@@ -408,7 +479,10 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
   .reveal{opacity:1!important;transform:none!important}
-  .protocol-stream,.protocol-integration{animation:none!important}
+  .hero-story *{animation:none!important;transition:none!important}
+  .story-data-source,.story-rig,.story-security-speed,.story-ai-problem,.story-ai-code{display:none!important}
+  .story-data-merge,.story-data-table,.story-data-row,.story-security-alert,.story-security-detect,.story-security-trace,.story-ai-solution{opacity:1!important;transform:none!important}
+  .story-ai-flow{transform:translateX(41px)!important}
 }
 </style>
 </head>
@@ -459,51 +533,72 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
       <p class="hero-note">respondemos en <b>&lt; 24 hs hábiles</b> · hablás directo con un founder</p>
     </div>
     <div class="hero-protocol" id="heroProtocol" aria-hidden="true">
-      <svg class="protocol-svg" viewBox="0 0 540 360" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <g class="protocol-grid">
-          <line x1="52" y1="84" x2="492" y2="84"/><line x1="52" y1="180" x2="492" y2="180"/>
-          <line x1="52" y1="276" x2="492" y2="276"/><line x1="52" y1="54" x2="52" y2="306"/>
-          <line x1="312" y1="54" x2="312" y2="306"/>
+      <!-- 01 · Datos: sistemas separados que terminan en un registro operativo. -->
+      <svg class="hero-story" viewBox="0 0 540 118" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <line class="story-guide" x1="14" y1="106" x2="522" y2="106"/><line class="story-guide story-guide--aqua" x1="14" y1="23" x2="84" y2="23"/>
+        <circle class="story-dot" cx="14" cy="23" r="3"/>
+        <text class="story-index" x="25" y="20">01</text><text class="story-name story-name--data" x="52" y="20">DATOS</text>
+        <path class="story-data-route" d="M128 38 H211 M126 61 H211 M128 84 H211"/>
+        <g transform="translate(48 29)"><g class="story-data-source story-data-source--a"><rect class="story-data-source-frame story-data-source-frame--aqua" width="80" height="17" rx="1"/><line class="story-data-line story-data-line--aqua" x1="10" y1="7" x2="42" y2="7"/><line class="story-data-line" x1="10" y1="12" x2="67" y2="12"/></g></g>
+        <g transform="translate(65 53)"><g class="story-data-source story-data-source--b"><rect class="story-data-source-frame" width="61" height="17" rx="1"/><line class="story-data-line" x1="8" y1="7" x2="32" y2="7"/><line class="story-data-line story-data-line--aqua" x1="8" y1="12" x2="49" y2="12"/></g></g>
+        <g transform="translate(44 77)"><g class="story-data-source story-data-source--c"><rect class="story-data-source-frame" width="84" height="17" rx="1"/><line class="story-data-line" x1="10" y1="7" x2="55" y2="7"/><line class="story-data-line story-data-line--aqua" x1="10" y1="12" x2="40" y2="12"/></g></g>
+        <g class="story-data-merge"><path class="story-data-merge-line" d="M218 30 V91 M218 30 L231 43 V78 L218 91 M231 61 H282"/><circle class="story-dot" cx="225" cy="61" r="3"/></g>
+        <g class="story-data-table">
+          <rect class="story-data-table-frame" x="294" y="28" width="178" height="67" rx="1"/><rect class="story-data-table-head" x="296" y="30" width="174" height="15"/>
+          <line class="story-data-table-rule" x1="294" y1="45" x2="472" y2="45"/><line class="story-data-table-rule" x1="335" y1="28" x2="335" y2="95"/><line class="story-data-table-rule" x1="398" y1="28" x2="398" y2="95"/>
+          <text class="story-data-table-label" x="304" y="40">ID</text><text class="story-data-table-label" x="346" y="40">DÍA</text><text class="story-data-table-label" x="409" y="40">EST.</text>
+          <g class="story-data-row story-data-row--a"><rect class="story-data-row-fill" x="296" y="47" width="174" height="14"/><circle class="story-data-row-mark" cx="313" cy="54" r="2.5"/><line class="story-data-row-line" x1="346" y1="54" x2="384" y2="54"/><line class="story-data-row-line" x1="410" y1="54" x2="452" y2="54"/></g>
+          <g class="story-data-row story-data-row--b"><rect class="story-data-row-fill" x="296" y="64" width="174" height="14"/><circle class="story-data-row-mark" cx="313" cy="71" r="2.5"/><line class="story-data-row-line" x1="346" y1="71" x2="384" y2="71"/><line class="story-data-row-line" x1="410" y1="71" x2="452" y2="71"/></g>
+          <g class="story-data-row story-data-row--c"><rect class="story-data-row-fill" x="296" y="81" width="174" height="12"/><circle class="story-data-row-mark" cx="313" cy="87" r="2.5"/><line class="story-data-row-line" x1="346" y1="87" x2="384" y2="87"/><line class="story-data-row-line" x1="410" y1="87" x2="452" y2="87"/></g>
         </g>
-        <g class="protocol-grid protocol-grid--accent">
-          <line x1="52" y1="228" x2="492" y2="228"/><line x1="420" y1="54" x2="420" y2="306"/>
+      </svg>
+
+      <!-- 02 · Seguridad: un acceso se detecta y queda bloqueado. -->
+      <svg class="hero-story" viewBox="0 0 540 118" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <line class="story-guide" x1="14" y1="106" x2="522" y2="106"/><line class="story-guide story-guide--aqua" x1="14" y1="23" x2="84" y2="23"/>
+        <circle class="story-dot" cx="14" cy="23" r="3"/>
+        <text class="story-index" x="25" y="20">02</text><text class="story-name story-name--security" x="52" y="20">SEGURIDAD</text>
+        <g class="story-security-desk"><line x1="83" y1="99" x2="465" y2="99"/></g>
+        <g transform="translate(212 0)">
+          <rect class="story-security-monitor" x="118" y="28" width="134" height="62" rx="1"/><rect class="story-security-screen" x="128" y="37" width="114" height="43" rx="1"/>
+          <g class="story-security-normal"><line class="story-security-normal-line" x1="143" y1="51" x2="203" y2="51"/><line class="story-security-normal-line" x1="143" y1="63" x2="225" y2="63" opacity=".55"/><circle class="story-dot" cx="226" cy="51" r="3"/></g>
+          <g class="story-security-alert"><rect class="story-security-alert-fill" x="128" y="37" width="114" height="43" rx="1"/><path class="story-security-alert-mark" d="M178 48 L193 66 M193 48 L178 66"/></g>
+          <path class="story-security-desk" d="M181 90V96M159 96H204"/><path class="story-security-keyboard" d="M139 96 H264 L287 104 H132 Z"/>
+          <rect class="story-security-detect" x="111" y="21" width="150" height="76" rx="2"/>
         </g>
-
-        <g>
-          <text class="protocol-index protocol-index--data" x="72" y="72">01</text>
-          <text class="protocol-label protocol-label--data" x="108" y="72">DATOS</text>
-          <text class="protocol-verb" x="108" y="101">leer el negocio</text>
-          <path class="protocol-stream protocol-stream--data" d="M196 84H348"/>
-          <rect class="protocol-node protocol-node--data" x="192" y="80" width="8" height="8"/>
+        <g class="story-rig story-rig--security" data-character-rig="security">
+          <g class="story-security-speed" data-rig-speed><line data-speed="0"/><line data-speed="1"/><line data-speed="2"/></g>
+          <line class="story-rig-bone story-rig-bone--torso" data-bone="torso"/>
+          <line class="story-rig-bone" data-bone="upperArmL"/><line class="story-rig-bone" data-bone="lowerArmL"/>
+          <line class="story-rig-bone" data-bone="upperArmR"/><line class="story-rig-bone" data-bone="lowerArmR"/>
+          <line class="story-rig-bone" data-bone="upperLegL"/><line class="story-rig-bone" data-bone="lowerLegL"/>
+          <line class="story-rig-bone" data-bone="upperLegR"/><line class="story-rig-bone" data-bone="lowerLegR"/>
+          <g data-rig-head><circle class="story-rig-head" r="7.5"/><path class="story-security-mask" d="M-8 -2 C-4 -4 4 -4 8 -2 L7 3 C3 1 -3 1 -7 3 Z"/></g>
         </g>
+        <g class="story-security-trace"><path d="M332 104 H480"/><path d="M352 112 H448"/></g>
+      </svg>
 
-        <g>
-          <text class="protocol-index protocol-index--security" x="72" y="168">02</text>
-          <text class="protocol-label protocol-label--security" x="108" y="168">SEGURIDAD</text>
-          <text class="protocol-verb" x="108" y="197">resguardar la operación</text>
-          <path class="protocol-stream protocol-stream--security" d="M244 180H348"/>
-          <rect class="protocol-node protocol-node--security" x="240" y="176" width="8" height="8"/>
+      <!-- 03 · IA: una rutina resuelve una cola que estaba trabada. -->
+      <svg class="hero-story" viewBox="0 0 540 118" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <line class="story-guide" x1="14" y1="106" x2="522" y2="106"/><line class="story-guide story-guide--aqua" x1="14" y1="23" x2="84" y2="23"/>
+        <circle class="story-dot" cx="14" cy="23" r="3"/>
+        <text class="story-index" x="25" y="20">03</text><text class="story-name story-name--ai" x="52" y="20">IA</text>
+        <g class="story-ai-desk"><line x1="61" y1="99" x2="449" y2="99"/></g>
+        <g transform="translate(120 0)">
+          <rect class="story-ai-monitor" x="210" y="28" width="134" height="62" rx="1"/><rect class="story-ai-screen" x="220" y="37" width="114" height="43" rx="1"/>
+          <path class="story-ai-desk" d="M270 90V96M248 96H292"/><path class="story-ai-keyboard" d="M205 96 H350 L374 104 H198 Z"/>
+          <g class="story-ai-problem"><rect class="story-ai-problem-bar" x="231" y="49" width="45" height="7" rx="2"/><rect class="story-ai-problem-bar" x="231" y="61" width="58" height="7" rx="2" opacity=".8"/><rect class="story-ai-problem-bar" x="231" y="73" width="36" height="7" rx="2" opacity=".6"/><path class="story-ai-problem-wall" d="M300 46 V78 M294 50 L300 46 L306 50 M294 74 L300 78 L306 74"/></g>
+          <g class="story-ai-code"><text class="story-ai-code-symbol" x="232" y="54">&gt;_</text><line class="story-ai-code-line" x1="258" y1="49" x2="314" y2="49"/><line class="story-ai-code-line story-ai-code-line--dim" x1="244" y1="61" x2="323" y2="61"/><line class="story-ai-code-line" x1="244" y1="73" x2="296" y2="73"/></g>
+          <g class="story-ai-solution"><path class="story-ai-track" d="M231 49 H320 M231 62 H320 M231 75 H320"/><rect class="story-ai-flow story-ai-flow--a" x="231" y="45" width="18" height="7" rx="2"/><rect class="story-ai-flow story-ai-flow--b" x="231" y="58" width="18" height="7" rx="2"/><rect class="story-ai-flow story-ai-flow--c" x="231" y="71" width="18" height="7" rx="2"/><path class="story-ai-result" d="M296 48 L301 53 L311 43 M296 61 L301 66 L311 56 M296 74 L301 79 L311 69"/></g>
         </g>
-
-        <g>
-          <text class="protocol-index protocol-index--ai" x="72" y="264">03</text>
-          <text class="protocol-label protocol-label--ai" x="108" y="264">IA</text>
-          <text class="protocol-verb" x="108" y="293">transformar con criterio</text>
-          <path class="protocol-stream protocol-stream--ai" d="M170 276H348"/>
-          <rect class="protocol-node protocol-node--ai" x="166" y="272" width="8" height="8"/>
+        <g class="story-rig story-rig--ai" data-character-rig="ai">
+          <line class="story-rig-bone story-rig-bone--torso" data-bone="torso"/>
+          <line class="story-rig-bone" data-bone="upperArmL"/><line class="story-rig-bone" data-bone="lowerArmL"/>
+          <line class="story-rig-bone" data-bone="upperArmR"/><line class="story-rig-bone" data-bone="lowerArmR"/>
+          <line class="story-rig-bone" data-bone="upperLegL"/><line class="story-rig-bone" data-bone="lowerLegL"/>
+          <line class="story-rig-bone" data-bone="upperLegR"/><line class="story-rig-bone" data-bone="lowerLegR"/>
+          <g data-rig-head><circle class="story-rig-head" r="7.5"/></g>
         </g>
-
-        <path class="protocol-output protocol-output--data" d="M348 84H470"/>
-        <text class="protocol-output-label protocol-output-label--data" x="362" y="73">DIAGNÓSTICO</text>
-        <path class="protocol-output protocol-output--security" d="M348 180H470"/>
-        <text class="protocol-output-label protocol-output-label--security" x="362" y="169">HARDENING</text>
-        <path class="protocol-output protocol-output--ai" d="M348 276H470"/>
-        <text class="protocol-output-label protocol-output-label--ai" x="362" y="265">AUTOMATIZACIÓN</text>
-        <path class="protocol-integration" d="M486 84H474M486 84V276M486 276H474"/>
-        <text class="protocol-integration-label" x="398" y="304">SE CONECTAN SI EL PROBLEMA LO PIDE</text>
-
-        <text class="protocol-caption" x="72" y="334">TRES SERVICIOS. UN CRITERIO.</text>
-        <text class="protocol-annotation" x="302" y="228">se integran cuando hace falta</text>
       </svg>
     </div>
   </div>
@@ -895,7 +990,6 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
     document.querySelector('.evidence-list'),
     document.querySelector('.service-index'),
     document.querySelector('.founders-lamina'),
-    document.querySelector('#heroProtocol'),
     document.querySelector('.final')
   ].filter(Boolean);
   document.querySelectorAll('.nerve').forEach(function(n){ pausables.push(n); });
@@ -904,6 +998,139 @@ body.scrolling *,body.scrolling *::before,body.scrolling *::after{animation-play
       es.forEach(function(e){ e.target.classList.toggle('anim-paused', !e.isIntersecting); });
     }, {rootMargin:'120px 0px'});
     pausables.forEach(function(el){ el.classList.add('anim-paused'); pio.observe(el); });
+  }
+
+  /* rigs articulados del hero: una anatomía, poses completas interpoladas */
+  var heroProtocol = document.getElementById('heroProtocol');
+  var rigNodes = heroProtocol ? heroProtocol.querySelectorAll('[data-character-rig]') : [];
+  if(rigNodes.length && !reduced && window.requestAnimationFrame){
+    var rigCycle = 7000;
+    var angleKeys = ['torso','upperArmL','lowerArmL','upperArmR','lowerArmR','upperLegL','lowerLegL','upperLegR','lowerLegR'];
+    var securityFrames = [
+      {t:0,x:224,y:72,opacity:0,torso:-96,upperArmL:140,lowerArmL:105,upperArmR:35,lowerArmR:65,upperLegL:145,lowerLegL:82,upperLegR:35,lowerLegR:98},
+      {t:600,x:224,y:72,opacity:0,torso:-96,upperArmL:140,lowerArmL:105,upperArmR:35,lowerArmR:65,upperLegL:145,lowerLegL:82,upperLegR:35,lowerLegR:98},
+      {t:760,x:238,y:72,opacity:1,torso:-94,upperArmL:35,lowerArmL:65,upperArmR:140,lowerArmR:105,upperLegL:130,lowerLegL:100,upperLegR:25,lowerLegR:70},
+      {t:1050,x:260,y:71,opacity:1,torso:-96,upperArmL:140,lowerArmL:105,upperArmR:35,lowerArmR:65,upperLegL:155,lowerLegL:110,upperLegR:55,lowerLegR:80},
+      {t:1350,x:286,y:72,opacity:1,torso:-93,upperArmL:42,lowerArmL:70,upperArmR:135,lowerArmR:100,upperLegL:125,lowerLegL:100,upperLegR:30,lowerLegR:75},
+      {t:1700,x:316,y:75,opacity:1,torso:-78,upperArmL:120,lowerArmL:88,upperArmR:55,lowerArmR:78,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:2500,x:316,y:75,opacity:1,torso:-25,upperArmL:90,lowerArmL:60,upperArmR:65,lowerArmR:78,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:3000,x:316,y:75,opacity:1,torso:-65,upperArmL:190,lowerArmL:155,upperArmR:-8,lowerArmR:22,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:3400,x:306,y:75,opacity:1,torso:-105,upperArmL:205,lowerArmL:170,upperArmR:18,lowerArmR:42,upperLegL:150,lowerLegL:78,upperLegR:32,lowerLegR:112},
+      {t:3800,x:294,y:72,opacity:1,torso:-125,upperArmL:200,lowerArmL:170,upperArmR:20,lowerArmR:45,upperLegL:145,lowerLegL:95,upperLegR:30,lowerLegR:60},
+      {t:4150,x:272,y:71,opacity:1,torso:-127,upperArmL:25,lowerArmL:55,upperArmR:195,lowerArmR:165,upperLegL:35,lowerLegL:65,upperLegR:145,lowerLegR:95},
+      {t:4500,x:244,y:70,opacity:1,torso:-123,upperArmL:198,lowerArmL:168,upperArmR:22,lowerArmR:48,upperLegL:145,lowerLegL:92,upperLegR:32,lowerLegR:62},
+      {t:4850,x:214,y:71,opacity:1,torso:-127,upperArmL:25,lowerArmL:55,upperArmR:195,lowerArmR:165,upperLegL:35,lowerLegL:65,upperLegR:145,lowerLegR:95},
+      {t:5300,x:178,y:70,opacity:0,torso:-110,upperArmL:198,lowerArmL:168,upperArmR:22,lowerArmR:48,upperLegL:145,lowerLegL:92,upperLegR:32,lowerLegR:62},
+      {t:7000,x:224,y:72,opacity:0,torso:-96,upperArmL:140,lowerArmL:105,upperArmR:35,lowerArmR:65,upperLegL:145,lowerLegL:82,upperLegR:35,lowerLegR:98}
+    ];
+    var aiFrames = [
+      {t:0,x:270,y:75,opacity:1,torso:-90,upperArmL:170,lowerArmL:150,upperArmR:65,lowerArmR:95,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:1100,x:270,y:75,opacity:1,torso:-90,upperArmL:170,lowerArmL:150,upperArmR:65,lowerArmR:95,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:1400,x:281,y:72,opacity:1,torso:-70,upperArmL:112,lowerArmL:82,upperArmR:62,lowerArmR:82,upperLegL:145,lowerLegL:95,upperLegR:35,lowerLegR:85},
+      {t:1700,x:292,y:75,opacity:1,torso:-25,upperArmL:100,lowerArmL:55,upperArmR:72,lowerArmR:85,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:2100,x:292,y:75,opacity:1,torso:-24,upperArmL:96,lowerArmL:60,upperArmR:78,lowerArmR:78,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:2500,x:292,y:75,opacity:1,torso:-26,upperArmL:102,lowerArmL:53,upperArmR:70,lowerArmR:87,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:2900,x:292,y:75,opacity:1,torso:-24,upperArmL:96,lowerArmL:60,upperArmR:78,lowerArmR:78,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:3300,x:292,y:75,opacity:1,torso:-26,upperArmL:102,lowerArmL:53,upperArmR:70,lowerArmR:87,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:3700,x:292,y:75,opacity:1,torso:-24,upperArmL:96,lowerArmL:60,upperArmR:78,lowerArmR:78,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:4100,x:292,y:75,opacity:1,torso:-25,upperArmL:100,lowerArmL:55,upperArmR:72,lowerArmR:85,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:4800,x:286,y:75,opacity:1,torso:-62,upperArmL:155,lowerArmL:125,upperArmR:45,lowerArmR:90,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:5300,x:278,y:75,opacity:1,torso:-82,upperArmL:170,lowerArmL:150,upperArmR:65,lowerArmR:95,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:6500,x:270,y:75,opacity:1,torso:-90,upperArmL:170,lowerArmL:150,upperArmR:65,lowerArmR:95,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115},
+      {t:7000,x:270,y:75,opacity:1,torso:-90,upperArmL:170,lowerArmL:150,upperArmR:65,lowerArmR:95,upperLegL:155,lowerLegL:65,upperLegR:25,lowerLegR:115}
+    ];
+
+    function rigEase(v){ return v * v * (3 - 2 * v); }
+    function rigMix(a,b,v){ return a + (b - a) * v; }
+    function rigMixAngle(a,b,v){
+      var delta = ((b - a + 540) % 360) - 180;
+      return a + delta * v;
+    }
+    function sampleRig(frames,time){
+      var i = 0;
+      while(i < frames.length - 2 && time > frames[i + 1].t) i++;
+      var a = frames[i], b = frames[i + 1];
+      var span = Math.max(1, b.t - a.t);
+      var v = rigEase(Math.max(0, Math.min(1, (time - a.t) / span)));
+      var pose = {x:rigMix(a.x,b.x,v),y:rigMix(a.y,b.y,v),opacity:rigMix(a.opacity,b.opacity,v)};
+      angleKeys.forEach(function(key){ pose[key] = rigMixAngle(a[key],b[key],v); });
+      return pose;
+    }
+    function rigPoint(origin,angle,length){
+      var rad = angle * Math.PI / 180;
+      return {x:origin.x + Math.cos(rad) * length,y:origin.y + Math.sin(rad) * length};
+    }
+    function setRigBone(el,a,b){
+      if(!el) return;
+      el.setAttribute('x1',a.x.toFixed(2)); el.setAttribute('y1',a.y.toFixed(2));
+      el.setAttribute('x2',b.x.toFixed(2)); el.setAttribute('y2',b.y.toFixed(2));
+    }
+    function buildRig(root,frames,type){
+      var bones = {};
+      root.querySelectorAll('[data-bone]').forEach(function(el){ bones[el.getAttribute('data-bone')] = el; });
+      return {root:root,frames:frames,type:type,bones:bones,head:root.querySelector('[data-rig-head]'),speed:root.querySelector('[data-rig-speed]')};
+    }
+    function renderRig(rig,time){
+      var pose = sampleRig(rig.frames,time);
+      var hip = {x:pose.x,y:pose.y};
+      var shoulder = rigPoint(hip,pose.torso,24);
+      var head = rigPoint(shoulder,pose.torso,12);
+      var elbowL = rigPoint(shoulder,pose.upperArmL,15);
+      var handL = rigPoint(elbowL,pose.lowerArmL,15);
+      var elbowR = rigPoint(shoulder,pose.upperArmR,15);
+      var handR = rigPoint(elbowR,pose.lowerArmR,15);
+      var kneeL = rigPoint(hip,pose.upperLegL,18);
+      var footL = rigPoint(kneeL,pose.lowerLegL,18);
+      var kneeR = rigPoint(hip,pose.upperLegR,18);
+      var footR = rigPoint(kneeR,pose.lowerLegR,18);
+      setRigBone(rig.bones.torso,shoulder,hip);
+      setRigBone(rig.bones.upperArmL,shoulder,elbowL); setRigBone(rig.bones.lowerArmL,elbowL,handL);
+      setRigBone(rig.bones.upperArmR,shoulder,elbowR); setRigBone(rig.bones.lowerArmR,elbowR,handR);
+      setRigBone(rig.bones.upperLegL,hip,kneeL); setRigBone(rig.bones.lowerLegL,kneeL,footL);
+      setRigBone(rig.bones.upperLegR,hip,kneeR); setRigBone(rig.bones.lowerLegR,kneeR,footR);
+      if(rig.head){
+        var tilt = (pose.torso + 90) * .25;
+        rig.head.setAttribute('transform','translate(' + head.x.toFixed(2) + ' ' + head.y.toFixed(2) + ') rotate(' + tilt.toFixed(2) + ')');
+      }
+      rig.root.style.opacity = pose.opacity.toFixed(3);
+      if(rig.speed){
+        var fadeIn = Math.max(0,Math.min(1,(time - 3800) / 220));
+        var fadeOut = Math.max(0,Math.min(1,(5300 - time) / 260));
+        var speedOpacity = Math.min(fadeIn,fadeOut) * pose.opacity;
+        var speedLines = rig.speed.querySelectorAll('[data-speed]');
+        var speedY = shoulder.y + 5;
+        [[18,50,0],[15,54,14],[12,47,28]].forEach(function(line,index){
+          var el = speedLines[index];
+          if(!el) return;
+          el.setAttribute('x1',(hip.x + line[0]).toFixed(2)); el.setAttribute('y1',(speedY + line[2]).toFixed(2));
+          el.setAttribute('x2',(hip.x + line[1]).toFixed(2)); el.setAttribute('y2',(speedY + line[2] - (index === 0 ? 4 : index === 2 ? -4 : 0)).toFixed(2));
+        });
+        rig.speed.style.opacity = speedOpacity.toFixed(3);
+      }
+    }
+
+    var rigs = [];
+    rigNodes.forEach(function(root){
+      var type = root.getAttribute('data-character-rig');
+      rigs.push(buildRig(root,type === 'security' ? securityFrames : aiFrames,type));
+    });
+    var rigVisible = true;
+    if('IntersectionObserver' in window){
+      rigVisible = false;
+      var rigObserver = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.target === heroProtocol) rigVisible = e.isIntersecting; });
+      }, {rootMargin:'140px 0px'});
+      rigObserver.observe(heroProtocol);
+    }
+    var rigEpoch = performance.now();
+    function tickRigs(now){
+      if(rigVisible && !document.hidden){
+        var phase = (now - rigEpoch) % rigCycle;
+        rigs.forEach(function(rig){ renderRig(rig,phase); });
+      }
+      window.requestAnimationFrame(tickRigs);
+    }
+    window.requestAnimationFrame(tickRigs);
   }
 
   /* menú mobile */
